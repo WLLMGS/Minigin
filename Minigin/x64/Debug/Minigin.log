@@ -1,0 +1,34 @@
+﻿  MiniginPCH.cpp
+  TransformComponent.cpp
+  Transform.cpp
+  Texture2D.cpp
+  TextObject.cpp
+  SpriteComponent.cpp
+  SceneManager.cpp
+  Scene.cpp
+  ResourceManager.cpp
+  Renderer.cpp
+  Minigin.cpp
+  Log.cpp
+  InputManager.cpp
+  GameObject.cpp
+  GameActor.cpp
+  Font.cpp
+  EngineTestScene.cpp
+  BaseComponent.cpp
+  Generating Code...
+     Creating library D:\Programming 4\source\Minigin\x64\Debug\Minigin.lib and object D:\Programming 4\source\Minigin\x64\Debug\Minigin.exp
+  Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Debug\Minigin.exe
+  Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Debug\Minigin.pdb (Partial PDB)
+  D:\Programming 4\source\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
+  1 File(s) copied
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  6 File(s) copied
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  D:\Programming 4\source\Minigin\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  2 File(s) copied
