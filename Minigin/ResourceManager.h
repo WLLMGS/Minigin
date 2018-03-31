@@ -2,6 +2,7 @@
 #include "Singleton.h"
 #include <vector>
 #include <map>
+#include <SDL.h>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ namespace dae
 		void Clear();
 		void Init(std::string&& data);
 
-		Texture2D* RequestTexture(const TextureName name);
+		SDL_Texture* RequestTexture(const TextureName name);
 		Font* RequestFont(const FontName name);
 
 		
@@ -36,7 +37,7 @@ namespace dae
 		void InitResources();
 		void InitTexture(const std::string& file, const TextureName name);
 		void InitFont(const std::string& file,int size, const FontName name);
-		map<int, Texture2D*> m_pTextures;
+		map<int, SDL_Texture*> m_pTextures;
 		map<int, Font*> m_pFonts;
 	};
 

@@ -1,6 +1,6 @@
 #include "MiniginPCH.h"
 #include "Renderer.h"
-#include <SDL.h>
+
 #include "SceneManager.h"
 #include "Texture2D.h"
 
@@ -31,27 +31,26 @@ void dae::Renderer::Destroy()
 	}
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const
+void dae::Renderer::RenderTexture(SDL_Texture* texture, const float x, const float y) const
 {
 	SDL_Rect dst;
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
-	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
-
+	SDL_QueryTexture(texture, nullptr, nullptr, &dst.w, &dst.h);
+	SDL_RenderCopy(GetSDLRenderer(), texture, nullptr, &dst);
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height) const
+void dae::Renderer::RenderTexture(SDL_Texture* texture, const float x, const float y, const float width, const float height) const
 {
 	SDL_Rect dst;
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
 	dst.w = static_cast<int>(width);
 	dst.h = static_cast<int>(height);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+	SDL_RenderCopy(GetSDLRenderer(), texture, nullptr, &dst);
 }
 
-void dae::Renderer::RenderTexture(const Texture2D& texture, float x, float y, float width, float height,
+void dae::Renderer::RenderTexture(SDL_Texture* texture, float x, float y, float width, float height,
 	float angle) const
 {
 	SDL_Rect dst;
@@ -64,6 +63,28 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, float x, float y, fl
 	center.x = int(dst.w / 2.0f);
 	center.y = int(dst.h / 2.0f);
 
-	//SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
-	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, double(angle), &center,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(GetSDLRenderer(), texture, nullptr, &dst, double(angle), &center,SDL_FLIP_NONE);
+}
+
+void dae::Renderer::RenderTexture(SDL_Texture* texture, float x, float y, float width, float height, float angle,
+	float sourceX, float sourceY, float sourceWidth, float sourceHeight) const
+{
+	SDL_Rect dst;
+	dst.x = static_cast<int>(x);
+	dst.y = static_cast<int>(y);
+	dst.w = static_cast<int>(width);
+	dst.h = static_cast<int>(height);
+
+	SDL_Rect src;
+	src.x = static_cast<int>(sourceX);
+	src.y = static_cast<int>(sourceY);
+	src.w = static_cast<int>(sourceWidth);
+	src.h = static_cast<int>(sourceHeight);
+
+
+	SDL_Point center;
+	center.x = int(dst.w / 2.0f);
+	center.y = int(dst.h / 2.0f);
+
+	SDL_RenderCopyEx(GetSDLRenderer(), texture, &src, &dst, double(angle), &center, SDL_FLIP_NONE);
 }

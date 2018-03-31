@@ -4,22 +4,25 @@
 #include "BaseComponent.h"
 
 #include "SpriteComponent.h"
-
 #include "InputManager.h"
 
 
 EngineTestScene::EngineTestScene() :
 Scene("Engine Test Scene")
 {
-	//add game objects
-	auto font = dae::ResourceManager::GetInstance().RequestFont(dae::FontName::DEFAULT);
-	m_pTxtFpsCounter = new dae::TextObject("FPS: ", font);
-	m_pTxtFpsCounter->SetPosition(10, 10);
+	//fps counter
+	auto textObj = new dae::GameObject();
+	m_pFpsComp = new TextComponent(dae::FontName::DEFAULT, {255,125,125}, "FPS: ");
+	textObj->AddComponent(m_pFpsComp);
+	textObj->Translate(10.0f, 10.0f,1);
+	AddChild(textObj);
 
-	AddChild(m_pTxtFpsCounter);
-
+	//pacman
 	m_pTestObject = new GameActor();
-	m_pTestObject->AddComponent(new dae::SpriteComponent(dae::TextureName::PACMAN));
+	auto sprite = new dae::SpriteComponent(dae::TextureName::PACMAN);
+	sprite->SetAnimated(true);
+	sprite->SetAnimationParameters(3, 9, 10.0f, 9.0f);
+	m_pTestObject->AddComponent(sprite);
 	m_pTestObject->Translate(10, 200, 1);
 	m_pTestObject->Transform()->SetScale(2, 2, 2);
 	m_pTestObject->Transform()->SetRotation(0.0f);
@@ -36,9 +39,9 @@ void EngineTestScene::Update(float elapsedSec)
 	m_FpsTimer += elapsedSec;
 	++m_FpsCounter;
 
-	if((m_FpsTimer / 1000.0f) >= 1.0f)
+	if((m_FpsTimer) >= 1.0f)
 	{
-		m_pTxtFpsCounter->SetText("FPS: " + to_string(m_FpsCounter));
+		m_pFpsComp->SetText("FPS: " + to_string(m_FpsCounter));
 		m_FpsCounter = 0;
 		m_FpsTimer = 0.0f;
 	}

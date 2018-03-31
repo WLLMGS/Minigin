@@ -44,7 +44,7 @@ void dae::TextObject::Render() const
 	if (mTexture != nullptr)
 	{
 		const auto pos = mTransform.GetPosition();
-		Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
+		//Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
 	}
 }
 

@@ -25,7 +25,7 @@ void GameActor::SetDirection(const Direction direction)
 
 void GameActor::Move(float elapsedSec)
 {
-	elapsedSec /= 1000.0f;
+	
 	switch(m_Direction)
 	{
 	case Right:

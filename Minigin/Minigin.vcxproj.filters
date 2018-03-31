@@ -86,6 +86,9 @@
     <ClInclude Include="GameActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -141,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="GameActor.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

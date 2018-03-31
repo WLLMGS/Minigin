@@ -1,23 +1,4 @@
-﻿  MiniginPCH.cpp
-  TransformComponent.cpp
-  Transform.cpp
-  Texture2D.cpp
-  TextObject.cpp
-  SpriteComponent.cpp
-  SceneManager.cpp
-  Scene.cpp
-  ResourceManager.cpp
-  Renderer.cpp
-  Minigin.cpp
-  Log.cpp
-  InputManager.cpp
-  GameObject.cpp
-  GameActor.cpp
-  Font.cpp
-  EngineTestScene.cpp
-  BaseComponent.cpp
-  Generating Code...
-     Creating library D:\Programming 4\source\Minigin\x64\Debug\Minigin.lib and object D:\Programming 4\source\Minigin\x64\Debug\Minigin.exp
+﻿  EngineTestScene.cpp
   Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Debug\Minigin.exe
   Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Debug\Minigin.pdb (Partial PDB)
   D:\Programming 4\source\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll

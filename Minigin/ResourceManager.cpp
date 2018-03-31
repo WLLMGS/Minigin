@@ -5,19 +5,21 @@
 #include <SDL_ttf.h>
 
 #include "Renderer.h"
-#include "Texture2D.h"
 #include "Font.h"
 
 
 void dae::ResourceManager::Clear()
 {
 	//clear all textures
-	for(pair<int, Texture2D*> p : m_pTextures)
+	for(pair<int, SDL_Texture*> p : m_pTextures)
+	{
+		SDL_DestroyTexture(p.second);
+	}
+	for(pair<int, Font*> p : m_pFonts)
 	{
 		delete p.second;
 		p.second = nullptr;
 	}
-
 }
 
 //OK
@@ -45,7 +47,7 @@ void dae::ResourceManager::Init(std::string&& dataPath)
 	InitResources();
 }
 
-dae::Texture2D* dae::ResourceManager::RequestTexture(const TextureName name)
+SDL_Texture* dae::ResourceManager::RequestTexture(const TextureName name)
 {
 	return (m_pTextures[name] != nullptr) ? m_pTextures[name] : nullptr;
 }
@@ -58,7 +60,7 @@ dae::Font* dae::ResourceManager::RequestFont(const FontName name)
 void dae::ResourceManager::InitResources()
 {
 	InitFont("SansSerifFont.ttf", 24, DEFAULT);
-	InitTexture("pacman.png", PACMAN);
+	InitTexture("pacman-spritesheet.png", PACMAN);
 }
 
 void dae::ResourceManager::InitTexture(const std::string& file, const TextureName name)
@@ -70,9 +72,7 @@ void dae::ResourceManager::InitTexture(const std::string& file, const TextureNam
 		throw std::runtime_error(ss.str().c_str());
 	}
 
-	Texture2D* texture2D = new Texture2D(texture);
-
-	m_pTextures[name] = texture2D;
+	m_pTextures[name] = texture;
 }
 
 void dae::ResourceManager::InitFont(const std::string& file,int size, const FontName name)

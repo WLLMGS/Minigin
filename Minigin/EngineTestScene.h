@@ -3,6 +3,7 @@
 #include "TextObject.h"
 #include "GameObject.h"
 #include "GameActor.h"
+#include "TextComponent.h"
 
 class EngineTestScene : public dae::Scene
 {
@@ -12,7 +13,7 @@ public:
 	
 	virtual void Update(float elapsedSec) override;
 private:
-	dae::TextObject* m_pTxtFpsCounter = nullptr;
+	TextComponent* m_pFpsComp = nullptr;
 	GameActor* m_pTestObject = nullptr;
 	int m_FpsCounter = 0;
 	float m_FpsTimer = 0.0f;
