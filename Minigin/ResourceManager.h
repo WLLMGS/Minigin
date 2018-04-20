@@ -10,7 +10,8 @@ namespace dae
 {
 	enum TextureName
 	{
-		PACMAN = 0
+		PACMAN = 0,
+		WALL_1 = 1
 	};
 	enum FontName
 	{

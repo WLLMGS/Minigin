@@ -2,7 +2,6 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "ResourceManager.h"
-#include "TextObject.h"
 
 unsigned int dae::Scene::idCounter = 0;
 
@@ -39,6 +38,8 @@ void dae::Scene::RootRender()
 	{
 		gameObject->RootRender();
 	}
+
+	Logger::GetInstance().Render();
 }
 
 void dae::Scene::Update(float elapsedSec)

@@ -60,6 +60,7 @@ void dae::SpriteComponent::SetAnimationParameters(int amountOfFrames, int frames
 	m_FramesPerSecond = framesPerSecond;
 	m_TileWidth = width;
 	m_TileHeight = height;
+	
 }
 
 void dae::SpriteComponent::CalculateAnimations(float elapsedSec)

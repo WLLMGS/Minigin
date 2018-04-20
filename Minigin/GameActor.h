@@ -14,8 +14,9 @@ class GameActor : public dae::GameObject
 public:
 	GameActor();
 	~GameActor();
-	virtual void Update(float elapsedSec) override;
-	virtual void SetDirection(const Direction direction);
+	void Update(float elapsedSec);
+	void SetDirection(const Direction direction);
+
 protected:
 	Direction m_Direction = Direction(0);
 	float m_Speed = 300.0f;

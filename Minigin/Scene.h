@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneManager.h"
 #include "GameObject.h"
+#include "Logger.h"
 
 namespace dae
 {
@@ -32,6 +33,7 @@ namespace dae
 
 	private:
 		friend class SceneManager;
+		friend class LevelLoader;
 
 		void RootUpdate(float elapsedSec);
 		void RootRender();

@@ -19,8 +19,8 @@ namespace dae
 		void CalculateAnimations(float elapsedSec);
 	private:
 		SDL_Texture* m_pTexture = nullptr;
-		float m_Width = 32.0f;
-		float m_Height = 32.0f;
+		float m_Width = GameSettings::TileSize;
+		float m_Height  = GameSettings::TileSize;
 
 		//animation
 		bool m_IsAnimated = false;

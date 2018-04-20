@@ -12,6 +12,8 @@ GameActor::~GameActor()
 
 }
 
+
+
 void GameActor::Update(float elapsedSec)
 {
 	Move(elapsedSec);

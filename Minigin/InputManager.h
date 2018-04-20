@@ -2,6 +2,7 @@
 #include <XInput.h>
 #include "Singleton.h"
 #include "GameActor.h"
+#include <map>
 
 class Command
 {
@@ -72,6 +73,7 @@ namespace dae
 		
 		bool ProcessInput();
 		bool IsPressed(ControllerButton button) const;
+		bool IsKeyPressed(int key);
 		Command* HandleInput();
 		void Clear();
 	private:
@@ -80,6 +82,8 @@ namespace dae
 		Command* m_pLeft = new MoveLeftCommand();
 		Command* m_pUp = new MoveUpCommand();
 		Command* m_pDown = new MoveDownCommand();
+		map<int, bool> m_KeyMap;
+
 	};
 
 

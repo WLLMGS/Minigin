@@ -59,8 +59,9 @@ dae::Font* dae::ResourceManager::RequestFont(const FontName name)
 
 void dae::ResourceManager::InitResources()
 {
-	InitFont("SansSerifFont.ttf", 24, DEFAULT);
+	InitFont("SansSerifFont.ttf", GameSettings::FontSize, DEFAULT);
 	InitTexture("pacman-spritesheet.png", PACMAN);
+	InitTexture("wallTile.png", WALL_1);
 }
 
 void dae::ResourceManager::InitTexture(const std::string& file, const TextureName name)

@@ -16,7 +16,11 @@ bool dae::InputManager::ProcessInput()
 			return false;
 		}
 		if (e.type == SDL_KEYDOWN) {
-			
+			m_KeyMap[e.key.keysym.sym] = true;
+		}
+		if(e.type == SDL_KEYUP)
+		{
+			m_KeyMap[e.key.keysym.sym] = false;
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
 			
@@ -51,12 +55,27 @@ bool dae::InputManager::IsPressed(ControllerButton button) const
 
 }
 
+bool dae::InputManager::IsKeyPressed(int key)
+{
+	return m_KeyMap[key];
+}
+
 Command* dae::InputManager::HandleInput()
 {
+	//controller
 	if (IsPressed(ControllerButton::DpadRight)) return m_pRight;
 	if (IsPressed(ControllerButton::DpadLeft)) return m_pLeft;
 	if (IsPressed(ControllerButton::DpadUp)) return m_pUp;
 	if (IsPressed(ControllerButton::DpadDown)) return m_pDown;
+
+	//Keyboard
+	//2 keys because of azerty / qwerty
+	if (IsKeyPressed(SDLK_z) || IsKeyPressed(SDLK_w)) return m_pUp;
+	if (IsKeyPressed(SDLK_s)) return m_pDown;
+	//2 keys because of azerty / qwerty
+	if (IsKeyPressed(SDLK_q) || IsKeyPressed(SDLK_a)) return m_pLeft;
+	if (IsKeyPressed(SDLK_d)) return m_pRight;
+
 	return nullptr;
 }
 

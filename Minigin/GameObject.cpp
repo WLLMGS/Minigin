@@ -22,11 +22,6 @@ void dae::GameObject::RootRender()
 
 dae::GameObject::~GameObject()
 {
-	if(m_pTexture2D)
-	{
-		delete m_pTexture2D;
-		m_pTexture2D = nullptr;
-	}
 
 	for(auto component : m_pComponents)
 	{

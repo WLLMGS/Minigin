@@ -11,6 +11,7 @@ void dae::Renderer::Init(SDL_Window * window)
 		std::stringstream ss; ss << "SDL_CreateRenderer Error: " << SDL_GetError();
 		throw std::runtime_error(ss.str().c_str());
 	}
+	
 }
 
 void dae::Renderer::Render()

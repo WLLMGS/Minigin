@@ -2,8 +2,7 @@
 #include <memory>
 
 #include <vector>
-#include "Texture2D.h"
-#include "SceneObject.h"
+
 #include "TransformComponent.h"
 
 using namespace std;
@@ -44,7 +43,7 @@ namespace dae
 		virtual void Render() const;
 	private:
 		
-		Texture2D* m_pTexture2D;
+		//Texture2D* m_pTexture2D;
 		TransformComponent m_TransformComponent;
 		vector<BaseComponent*> m_pComponents;
 	};
