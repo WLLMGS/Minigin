@@ -21,11 +21,11 @@ void dae::SpriteComponent::Update(float elapsedSec)
 
 void dae::SpriteComponent::Render()
 {
-	//Renderer::GetInstance().RenderTexture(m_pTexture, m_pGameObject->Transform()->GetPosition().x
-	//	, m_pGameObject->Transform()->GetPosition().y
-	//	, m_Width * m_pGameObject->Transform()->GetScale().x
-	//	, m_Height * m_pGameObject->Transform()->GetScale().y
-	//	, m_pGameObject->Transform()->GetAngle());
+	//Renderer::GetInstance().RenderTexture(m_pTexture, m_pGameObjects->Transform()->GetPosition().x
+	//	, m_pGameObjects->Transform()->GetPosition().y
+	//	, m_Width * m_pGameObjects->Transform()->GetScale().x
+	//	, m_Height * m_pGameObjects->Transform()->GetScale().y
+	//	, m_pGameObjects->Transform()->GetAngle());
 
 	if(m_IsAnimated)
 	{

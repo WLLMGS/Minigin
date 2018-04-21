@@ -23,6 +23,8 @@ namespace dae
 		void RenderTexture(SDL_Texture* texture, float x, float y, float width, float height, float angle
 		,float sourceX, float sourceY, float sourceWidth, float sourceHeight) const;
 
+		void RenderFillRectangle(float x, float y, float width, float height);
+
 		SDL_Renderer* GetSDLRenderer() const { return mRenderer; }
 	};
 }

@@ -1,13 +1,11 @@
 #include "MiniginPCH.h"
 #include "EngineTestScene.h"
 #include "ResourceManager.h"
-#include "BaseComponent.h"
-
-#include "SpriteComponent.h"
 #include "InputManager.h"
-#include "WallPrefab.h"
 #include "PacmanPrefab.h"
 #include "LevelLoader.h"
+#include "ColliderComponent.h"
+#include "WallPrefab.h"
 
 
 EngineTestScene::EngineTestScene() :
@@ -25,17 +23,9 @@ Scene("Engine Test Scene")
 	//pacman
 	m_pTestObject = new PacmanPrefab();
 	m_pTestObject->Translate(20, 100, 1);
-	/*auto sprite = new dae::SpriteComponent(dae::TextureName::PACMAN);
-	sprite->SetAnimated(true);
-	sprite->SetAnimationParameters(3, 9, 10.0f, 9.0f);
-	m_pTestObject->AddComponent(sprite);
-	m_pTestObject->Translate(10, 200, 1);
-	m_pTestObject->Transform()->SetScale(1, 1, 1);
-	m_pTestObject->Transform()->SetRotation(0.0f);*/
-
+	m_pTestObject->AddComponent(new ColliderComponent());
+	//m_pTestObject->Transform()->SetScale(0.9f, 0.9f, 1);
 	AddChild(m_pTestObject);
-
-	//Logger::GetInstance().Log("HELLO WORLD");
 
 }
 
@@ -51,13 +41,10 @@ void EngineTestScene::Update(float elapsedSec)
 	if((m_FpsTimer) >= 1.0f)
 	{	
 		string message = "X: " + to_string(m_pTestObject->Transform()->GetPosition().x) + " Y: " + to_string(m_pTestObject->Transform()->GetPosition().y);
-		Logger::GetInstance().Log(message);
-		
 		//Logger::GetInstance().Log(message);
 		m_pFpsComp->SetText("FPS: " + to_string(m_FpsCounter));
 		m_FpsCounter = 0;
 		m_FpsTimer = 0.0f;
-
 	}
 
 	
@@ -66,5 +53,17 @@ void EngineTestScene::Update(float elapsedSec)
 
 	if (command) command->Execute(m_pTestObject);
 
+	for(auto obj : m_pGameObjects)
+	{
+		if(obj != m_pTestObject && obj->GetComponent<ColliderComponent>())
+		{
+			if(!obj->GetComponent<ColliderComponent>()->IsDynamic())
+			{
+				//only check collision with static objects (for now)
+				m_pTestObject->GetComponent<ColliderComponent>()->CheckCollision(obj->GetComponent<ColliderComponent>());
+			}
+		}
+	}
+	
 }
 

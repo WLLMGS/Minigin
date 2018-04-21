@@ -81,7 +81,10 @@
     <ClInclude Include="LevelLoader.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Logger.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Minigin.cpp">
@@ -141,6 +144,9 @@
     <ClCompile Include="LevelLoader.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Logger.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderComponent.cpp" />
   </ItemGroup>
 </Project>

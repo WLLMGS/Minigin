@@ -22,12 +22,12 @@ namespace dae
 
 	protected:
 		void AddChild(GameObject* obj);
-
+		std::vector < GameObject*> m_pGameObjects{};
 		private: 
 		
 
 		std::string mName{};
-		std::vector < GameObject*> mObjects{};
+		
 
 		static unsigned int idCounter; 
 

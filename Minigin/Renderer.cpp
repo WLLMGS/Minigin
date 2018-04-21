@@ -3,6 +3,7 @@
 
 #include "SceneManager.h"
 #include "Texture2D.h"
+#include "Logger.h"
 
 void dae::Renderer::Init(SDL_Window * window)
 {
@@ -88,4 +89,22 @@ void dae::Renderer::RenderTexture(SDL_Texture* texture, float x, float y, float 
 	center.y = int(dst.h / 2.0f);
 
 	SDL_RenderCopyEx(GetSDLRenderer(), texture, &src, &dst, double(angle), &center, SDL_FLIP_NONE);
+}
+
+void dae::Renderer::RenderFillRectangle(float x, float y, float width, float height)
+{
+	SDL_Rect rect;
+	rect.x = int(x);
+	rect.y = int(y);
+	rect.w = int(width);
+	rect.h = int(height);
+
+	//set color of renderer
+	SDL_SetRenderDrawColor(GetSDLRenderer(), 255, 0, 0, 255);
+
+	//drawing rectangle
+	SDL_RenderFillRect(GetSDLRenderer(), &rect);
+
+	//resetting color of renderer
+	SDL_SetRenderDrawColor(GetSDLRenderer(), 0, 0, 0, 255);
 }

@@ -27,6 +27,7 @@ namespace dae
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
+		string Tag;
 	public:
 		template<class T> T* GetComponent()
 		{

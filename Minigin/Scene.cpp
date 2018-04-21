@@ -10,7 +10,7 @@ dae::Scene::Scene(const std::string& name) : mName(name) { }
 
 dae::Scene::~Scene()
 {
-	for(GameObject* object: mObjects)
+	for(GameObject* object: m_pGameObjects)
 	{
 		delete object;
 		object = nullptr;
@@ -19,13 +19,13 @@ dae::Scene::~Scene()
 
 void dae::Scene::AddChild(GameObject* obj)
 {
-	mObjects.push_back(obj);
+	m_pGameObjects.push_back(obj);
 }
 
 void dae::Scene::RootUpdate(float elapsedSec)
 {
 	Update(elapsedSec);
-	for (auto gameObject : mObjects)
+	for (auto gameObject : m_pGameObjects)
 	{
 		gameObject->RootUpdate(elapsedSec);
 	}
@@ -34,7 +34,7 @@ void dae::Scene::RootUpdate(float elapsedSec)
 void dae::Scene::RootRender()
 {
 	Render();
-	for (const auto gameObject : mObjects)
+	for (const auto gameObject : m_pGameObjects)
 	{
 		gameObject->RootRender();
 	}
