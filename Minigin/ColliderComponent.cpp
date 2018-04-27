@@ -29,6 +29,7 @@ void ColliderComponent::Render()
 
 bool ColliderComponent::CheckCollision(ColliderComponent* other)
 {		
+	
 	float deltaX = other->m_PosX - m_PosX;
 	float deltaY = other->m_PosY - m_PosY;
 
@@ -38,6 +39,7 @@ bool ColliderComponent::CheckCollision(ColliderComponent* other)
 	float halfWidth = m_Width / 2.0f;
 	float halfHeight = m_Height / 2.0f;
 
+	//point where rects collide
 	float intersectX = abs(deltaX) - (otherHalfWidth + halfWidth);
 	float intersectY = abs(deltaY) - (otherHalfHeight + halfHeight);
 
