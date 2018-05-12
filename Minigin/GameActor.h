@@ -16,12 +16,10 @@ public:
 	~GameActor();
 	void Update(float elapsedSec);
 	void SetDirection(const Direction direction);
-
+	float GetSpeed() const;
 protected:
 	Direction m_Direction = Direction(0);
 	float m_Speed = 300.0f;
-
-private:
 	void Move(float elapsedSec);
 };
 

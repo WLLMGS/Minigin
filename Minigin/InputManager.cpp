@@ -58,6 +58,7 @@ bool dae::InputManager::IsPressed(ControllerButton button) const
 bool dae::InputManager::IsKeyPressed(int key)
 {
 	return m_KeyMap[key];
+	
 }
 
 Command* dae::InputManager::HandleInput()
@@ -92,6 +93,32 @@ void dae::InputManager::Clear()
 
 	delete m_pDown;
 	m_pDown = nullptr;
+}
+
+void dae::InputManager::GetThumbstickLeft(float& x, float& y)
+{
+	x = currentState.Gamepad.sThumbLX;
+	y = -float(currentState.Gamepad.sThumbLY);
+
+	x /= 32768.0;
+	y /= 32768.0;
+
+	if (abs(x) < 0.19f) x = 0.0f;
+	if (abs(y) < 0.19f) y = 0.0f;
+
+}
+
+void dae::InputManager::GetThumbstickRight(float& x, float& y)
+{
+	x = currentState.Gamepad.sThumbRX;
+	y = -float(currentState.Gamepad.sThumbRY);
+
+	x /= 32768.0;
+	y /= 32768.0;
+
+	if (abs(x) < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) x = 0.0f;
+	if (abs(y) < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) y = 0.0f;
+
 }
 
 

@@ -2,6 +2,8 @@
 #include "PacmanPrefab.h"
 #include "SpriteComponent.h"
 #include "TextComponent.h"
+#include "ColliderComponent.h"
+#include "InputManager.h"
 
 
 PacmanPrefab::PacmanPrefab()
@@ -11,7 +13,42 @@ PacmanPrefab::PacmanPrefab()
 	sprite->SetAnimationParameters(3, 9, 10.0f, 9.0f);
 
 	AddComponent(sprite);
+	
+	auto collider = new ColliderComponent(true);
+	collider->SetCollisionGroup(GameSettings::CollisionGroups::PLAYER);
+	collider->SetOffset(2.0f, 2.0f);
+	collider->SetDimensions(24.0f, 24.0f);
+
+	AddComponent(collider);
+
+	m_Speed = 100.0f;
+
+	SetTag("Player");
+	SetName("Player");
+
 }
+
+void PacmanPrefab::Update(float elapsedSec)
+{
+	auto command = dae::InputManager::GetInstance().HandleInput();
+
+	if (command) command->Execute(this);
+
+	Move(elapsedSec);
+}
+
+void PacmanPrefab::OnTriggerEnter(ColliderComponent* other)
+{
+	if (other->gameObject->GetTag() == "Coin") other->gameObject->Destroy();
+}
+
+void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)
+{
+	UNREFERENCED_PARAMETER(other);
+	//if (other->gameObject->GetTag() == "Ghost") Destroy();
+}
+
+
 
 
 

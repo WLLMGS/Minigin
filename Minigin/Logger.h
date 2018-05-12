@@ -1,6 +1,7 @@
 #pragma once
 #include "TextObject.h"
 #include "Singleton.h"
+#include "GameSettings.h"
 
 class Logger final : public dae::Singleton<Logger>
 {
@@ -12,6 +13,7 @@ public:
 	Logger() = default;
 private:
 	void MoveObjects();
+
 private:
 	vector<dae::GameObject*> m_pMessages;
 	const float m_StartX = 10.0f;

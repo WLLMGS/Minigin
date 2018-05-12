@@ -14,29 +14,27 @@ namespace dae
 		virtual void Update(float elapsedSec);
 		void Render() const;
 		string GetName() const;
-		~Scene();
+		virtual ~Scene();
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
-
-	protected:
 		void AddChild(GameObject* obj);
+		GameObject* FindGameObject(string name);
+	protected:
 		std::vector < GameObject*> m_pGameObjects{};
-		private: 
-		
-
+	private: 
 		std::string mName{};
-		
-
 		static unsigned int idCounter; 
-
+		vector<GameObject*> m_pClear;
+		void Destroy(size_t index);
 	private:
 		friend class SceneManager;
 		friend class LevelLoader;
 
 		void RootUpdate(float elapsedSec);
 		void RootRender();
+		void RootPostUpdate();
 	};
 
 }

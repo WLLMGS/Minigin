@@ -5,28 +5,27 @@
 
 void dae::SceneManager::Update(float elapsedSec)
 {
-	for(auto scene : mScenes)
-	{
-		scene->RootUpdate(elapsedSec);
-	}
+	m_pScenes[m_ActiveSceneID]->RootUpdate(elapsedSec);
 }
 
 void dae::SceneManager::Render()
 {
-	for (const auto scene : mScenes)
-	{
-		scene->RootRender();
-	}
+	m_pScenes[m_ActiveSceneID]->RootRender();
+}
+
+void dae::SceneManager::PostUpdate()
+{
+	
 }
 
 void dae::SceneManager::AddScene(Scene* scene)
 {
-	mScenes.push_back(scene);
+	m_pScenes.push_back(scene);
 }
 
 dae::Scene* dae::SceneManager::GetScene(string name)
 {
-	for(Scene* scene : mScenes)
+	for(Scene* scene : m_pScenes)
 	{
 		if(scene->GetName() == name)
 		{
@@ -39,9 +38,22 @@ dae::Scene* dae::SceneManager::GetScene(string name)
 
 void dae::SceneManager::CleanUp()
 {
-	for(Scene* scene : mScenes)
+	for(Scene* scene : m_pScenes)
 	{
 		delete scene;
 		scene = nullptr;
+	}
+}
+
+void dae::SceneManager::NextScene()
+{
+	int newID = m_ActiveSceneID + 1;
+	if(newID < m_pScenes.size())
+	{
+		m_ActiveSceneID = newID;
+	}
+	else
+	{
+		m_ActiveSceneID = 0;
 	}
 }

@@ -21,37 +21,46 @@ void dae::SpriteComponent::Update(float elapsedSec)
 
 void dae::SpriteComponent::Render()
 {
-	//Renderer::GetInstance().RenderTexture(m_pTexture, m_pGameObjects->Transform()->GetPosition().x
-	//	, m_pGameObjects->Transform()->GetPosition().y
-	//	, m_Width * m_pGameObjects->Transform()->GetScale().x
-	//	, m_Height * m_pGameObjects->Transform()->GetScale().y
-	//	, m_pGameObjects->Transform()->GetAngle());
-
 	if(m_IsAnimated)
 	{
-		Renderer::GetInstance().RenderTexture(m_pTexture, m_pGameObject->Transform()->GetPosition().x
-			, m_pGameObject->Transform()->GetPosition().y
-			, m_Width * m_pGameObject->Transform()->GetScale().x
-			, m_Height * m_pGameObject->Transform()->GetScale().y
-			, m_pGameObject->Transform()->GetAngle()
-			, m_CurrentFrame * m_TileWidth
-			, 0.0f,
+		Renderer::GetInstance().RenderTexture(m_pTexture, gameObject->Transform()->GetPosition().x
+			, gameObject->Transform()->GetPosition().y
+			, m_Width * gameObject->Transform()->GetScale().x
+			, m_Height * gameObject->Transform()->GetScale().y
+			, gameObject->Transform()->GetAngle()
+			, m_StartWidth + m_CurrentFrame * m_TileWidth
+			, m_StartHeight,
 			m_TileWidth,
 			m_TileHeight);
 	}
 	else
 	{
-		Renderer::GetInstance().RenderTexture(m_pTexture, m_pGameObject->Transform()->GetPosition().x
-			, m_pGameObject->Transform()->GetPosition().y
-			, m_Width * m_pGameObject->Transform()->GetScale().x
-			, m_Height * m_pGameObject->Transform()->GetScale().y
-			, m_pGameObject->Transform()->GetAngle());
+		Renderer::GetInstance().RenderTexture(m_pTexture, gameObject->Transform()->GetPosition().x
+			, gameObject->Transform()->GetPosition().y
+			, m_Width * gameObject->Transform()->GetScale().x
+			, m_Height * gameObject->Transform()->GetScale().y
+			, gameObject->Transform()->GetAngle(),
+			m_StartWidth,
+			m_StartHeight,
+			m_Width,
+			m_Height
+			);
 	}
 }
 
 void dae::SpriteComponent::SetAnimated(bool b)
 {
 	m_IsAnimated = b;
+}
+
+void dae::SpriteComponent::SetStartHeight(float height)
+{
+	m_StartHeight = height;
+}
+
+void dae::SpriteComponent::SetStartWidth(float width)
+{
+	m_StartWidth = width;
 }
 
 void dae::SpriteComponent::SetAnimationParameters(int amountOfFrames, int framesPerSecond, float width, float height)
@@ -61,6 +70,17 @@ void dae::SpriteComponent::SetAnimationParameters(int amountOfFrames, int frames
 	m_TileWidth = width;
 	m_TileHeight = height;
 	
+}
+
+void dae::SpriteComponent::SetTexture(int textureName)
+{
+	m_pTexture = ResourceManager::GetInstance().RequestTexture(TextureName(textureName));
+}
+
+void dae::SpriteComponent::SetDimensions(float width, float height)
+{
+	m_Width = width;
+	m_Height = height;
 }
 
 void dae::SpriteComponent::CalculateAnimations(float elapsedSec)

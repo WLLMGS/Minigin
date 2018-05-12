@@ -17,6 +17,9 @@ namespace dae
 		void Translate(float x, float y, float z);
 		void SetScale(float x, float y, float z);
 		void SetRotation(const float angle);
+		void SetGameObject(GameObject* obj);
+		void SetPosition(float x, float y);
+
 	private:
 		
 		glm::vec3 m_Position;
@@ -24,5 +27,3 @@ namespace dae
 		float m_Angle = 0.0f;
 	};
 }
-
-

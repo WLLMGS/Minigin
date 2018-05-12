@@ -1,0 +1,9 @@
+﻿  PacmanDemoScene.cpp
+     Creating library D:\Programming 4\source\Minigin\x64\Release\SandBox.lib and object D:\Programming 4\source\Minigin\x64\Release\SandBox.exp
+  Generating code
+  134 of 1531 functions ( 8.8%) were compiled, the rest were copied from previous compilation.
+    18 functions were new in current compilation
+    54 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  SandBox.vcxproj -> D:\Programming 4\source\Minigin\x64\Release\SandBox.exe
+  SandBox.vcxproj -> D:\Programming 4\source\Minigin\x64\Release\SandBox.pdb (Full PDB)

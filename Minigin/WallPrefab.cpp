@@ -9,7 +9,10 @@ WallPrefab::WallPrefab()
 {
 	auto sprite = new dae::SpriteComponent(dae::WALL_1);
 	AddComponent(sprite);
-	AddComponent(new ColliderComponent(false));
+
+	ColliderComponent* col = new ColliderComponent(false);
+	col->SetCollisionGroup(GameSettings::CollisionGroups::WALL);
+	AddComponent(col);
 }
 
 

@@ -2,7 +2,7 @@
 #include "SceneObject.h"
 #include "Transform.h"
 #include "GameObject.h"
-
+#include <memory>
 
 namespace dae
 {

@@ -40,13 +40,13 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -192,17 +192,23 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="CoinPrefab.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="EngineTestScene.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="FpsCounterPrefab.h" />
     <ClInclude Include="GameActor.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameSettings.h" />
+    <ClInclude Include="GhostPrefab.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MiniginGame.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="PacmanPrefab.h" />
+    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -217,16 +223,20 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp" />
+    <ClCompile Include="CoinPrefab.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="EngineTestScene.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="FpsCounterPrefab.cpp" />
     <ClCompile Include="GameActor.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GhostPrefab.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Minigin.cpp" />
+    <ClCompile Include="MiniginGame.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -235,6 +245,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="PacmanPrefab.cpp" />
+    <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />

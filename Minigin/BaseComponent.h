@@ -8,14 +8,16 @@ namespace dae
 	public:
 		BaseComponent();
 		virtual ~BaseComponent();
-		GameObject* GetGameObject() { return m_pGameObject; }
-		
+		GameObject* gameObject;
 
 	protected:
 		virtual void Update(float elapsedSec) = 0;
 		virtual void Render() = 0;
+		void SetGameObject(GameObject* pGameObject) { gameObject = pGameObject; }
+		GameObject* GetGameObject() { return gameObject; }
 
-		GameObject* m_pGameObject;
+
+		
 		//add transform later
 
 

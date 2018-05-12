@@ -2,6 +2,10 @@
 #include "LevelLoader.h"
 #include <fstream>
 #include "WallPrefab.h"
+#include "CoinPrefab.h"
+#include "GhostPrefab.h"
+
+vector<dae::GridCell*> dae::LevelLoader::Grid;
 
 void dae::LevelLoader::LoadLevel(string levelName, dae::Scene* scene)
 {
@@ -30,13 +34,46 @@ void dae::LevelLoader::LoadLevel(string levelName, dae::Scene* scene)
 
 			while(getline(ss, element, ','))
 			{
-				if(element == "W")
+				GridCell* cell = new GridCell();
+				cell->x = x * tileSize;
+				cell->y = y * tileSize;
+				cell->xIndex = x;
+				cell->yIndex = y;
+
+				if (element == "W")
 				{
 					auto wall = new WallPrefab();
-					wall->Translate(x * tileSize, y * tileSize, 1);
-					
+					wall->Translate(x * tileSize, y * tileSize, 0);
+
 					scene->AddChild(wall);
+					cell->isAccessible = false;
 				}
+				else if (element == "E")
+				{
+					//add coin
+					auto coin = new CoinPrefab();
+					coin->Translate(x * tileSize, y * tileSize, 0);
+					scene->AddChild(coin);
+
+					cell->isAccessible = true;
+				}
+				else if (element == "P")
+				{
+					auto player = scene->FindGameObject("Player");
+					if (player) player->Transform()->SetPosition(x * tileSize, y * tileSize);
+
+					cell->isAccessible = true;
+				}
+				else if(element == "G")
+				{
+					auto ghost = new GhostPrefab();
+					ghost->Transform()->SetPosition(tileSize * x, tileSize * y);
+					scene->AddChild(ghost);
+
+					cell->isAccessible = true;
+				}
+				Grid.push_back(cell);
+
 				++x;
 			}
 			x = 0;
@@ -45,4 +82,13 @@ void dae::LevelLoader::LoadLevel(string levelName, dae::Scene* scene)
 		}
 	}
 
+}
+
+void dae::LevelLoader::Clear()
+{
+	for(size_t t{}; t < Grid.size(); ++t)
+	{
+		delete Grid[t];
+		Grid[t] = nullptr;
+	}
 }

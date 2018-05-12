@@ -7,14 +7,14 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{f4d21e5a-a0eb-4762-9b28-09c753706dc5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Managers">
-      <UniqueIdentifier>{3924bb53-0084-451c-9750-970554960948}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{1027f709-4127-4daa-8744-87b8eb1d311b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Prefabs">
       <UniqueIdentifier>{349316ee-e8a9-4717-b798-fd7df2d77714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{3924bb53-0084-451c-9750-970554960948}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +84,25 @@
     <ClInclude Include="Logger.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderComponent.h" />
+    <ClInclude Include="MiniginGame.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSettings.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="FpsCounterPrefab.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinPrefab.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostPrefab.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Minigin.cpp">
@@ -147,6 +165,21 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="ColliderComponent.cpp" />
+    <ClCompile Include="MiniginGame.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsCounterPrefab.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinPrefab.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostPrefab.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinder.cpp" />
   </ItemGroup>
 </Project>

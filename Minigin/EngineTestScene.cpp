@@ -5,7 +5,6 @@
 #include "PacmanPrefab.h"
 #include "LevelLoader.h"
 #include "ColliderComponent.h"
-#include "WallPrefab.h"
 
 
 EngineTestScene::EngineTestScene() :
@@ -23,8 +22,6 @@ Scene("Engine Test Scene")
 	//pacman
 	m_pTestObject = new PacmanPrefab();
 	m_pTestObject->Translate(20, 100, 1);
-	m_pTestObject->AddComponent(new ColliderComponent());
-	//m_pTestObject->Transform()->SetScale(0.9f, 0.9f, 1);
 	AddChild(m_pTestObject);
 
 }

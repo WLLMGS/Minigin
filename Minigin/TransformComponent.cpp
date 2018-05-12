@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "TransformComponent.h"
+#include "GameObject.h"
 
 
 dae::TransformComponent::TransformComponent() :
@@ -42,6 +43,11 @@ void dae::TransformComponent::Translate(float x, float y, float z)
 	m_Position.x += x;
 	m_Position.y += y;
 	m_Position.z += z;
+
+	for(auto child : gameObject->GetChildren())
+	{
+		child->Transform()->Translate(x, y, z);
+	}
 }
 
 void dae::TransformComponent::SetScale(float x, float y, float z)
@@ -49,9 +55,29 @@ void dae::TransformComponent::SetScale(float x, float y, float z)
 	m_Scale.x = x;
 	m_Scale.y = y;
 	m_Scale.z = z;
+
+	for (auto child : gameObject->GetChildren())
+	{
+		child->Transform()->SetScale(x, y, z);
+	}
 }
 
 void dae::TransformComponent::SetRotation(const float angle)
 {
 	m_Angle = angle;
+	for (auto child : gameObject->GetChildren())
+	{
+		child->Transform()->SetRotation(angle);
+	}
+}
+
+void dae::TransformComponent::SetGameObject(GameObject* obj)
+{
+	gameObject = obj;
+}
+
+void dae::TransformComponent::SetPosition(float x, float y)
+{
+	m_Position.x = x;
+	m_Position.y = y;
 }

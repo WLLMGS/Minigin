@@ -1,6 +1,6 @@
-﻿  EngineTestScene.cpp
-  Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Debug\Minigin.exe
-  Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Debug\Minigin.pdb (Partial PDB)
+﻿  PathFinder.cpp
+Minigin.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+  Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Debug\Minigin.lib
   D:\Programming 4\source\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied
   D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll

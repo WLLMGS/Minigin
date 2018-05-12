@@ -25,6 +25,11 @@ void GameActor::SetDirection(const Direction direction)
 	m_Direction = direction;
 }
 
+float GameActor::GetSpeed() const
+{
+	return m_Speed;
+}
+
 void GameActor::Move(float elapsedSec)
 {
 	

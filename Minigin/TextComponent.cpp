@@ -23,7 +23,7 @@ void TextComponent::Update(float elapsedSec)
 
 void TextComponent::Render()
 {
-	dae::Renderer::GetInstance().RenderTexture(m_pTexture, m_pGameObject->Transform()->GetPosition().x, m_pGameObject->Transform()->GetPosition().y);
+	dae::Renderer::GetInstance().RenderTexture(m_pTexture, gameObject->Transform()->GetPosition().x, gameObject->Transform()->GetPosition().y);
 }
 
 void TextComponent::SetColor(const SDL_Color& color)

@@ -11,7 +11,20 @@ namespace dae
 	enum TextureName
 	{
 		PACMAN = 0,
-		WALL_1 = 1
+		WALL_1 = 1,
+		CHARACTER_1_RUN = 2,
+		CHARACTER_1_IDLE = 3,
+		CHARACTER_1_ATTACK = 4,
+		FIREBALL = 5,
+		FIREBALL_DESTROY = 6,
+		SPACESHIP_1 = 7,
+		BULLET_BLUE = 8,
+		SPACESHIPT_ENEMY_1 = 9,
+		LARGE_EXPLOSION = 10,
+		THRUSTER = 11,
+		BULLET_ORANGE = 12,
+		COIN = 13,
+		GHOST = 14
 	};
 	enum FontName
 	{
@@ -31,9 +44,6 @@ namespace dae
 
 		SDL_Texture* RequestTexture(const TextureName name);
 		Font* RequestFont(const FontName name);
-
-		
-
 	private:
 		void InitResources();
 		void InitTexture(const std::string& file, const TextureName name);

@@ -6,6 +6,7 @@
 
 #include "Renderer.h"
 #include "Font.h"
+#include "GameSettings.h"
 
 
 void dae::ResourceManager::Clear()
@@ -22,7 +23,7 @@ void dae::ResourceManager::Clear()
 	}
 }
 
-//OK
+
 void dae::ResourceManager::Init(std::string&& dataPath)
 {
 	mDataPath = std::move(dataPath);
@@ -62,6 +63,14 @@ void dae::ResourceManager::InitResources()
 	InitFont("SansSerifFont.ttf", GameSettings::FontSize, DEFAULT);
 	InitTexture("pacman-spritesheet.png", PACMAN);
 	InitTexture("wallTile.png", WALL_1);
+	InitTexture("SpaceShip1.png", SPACESHIP_1);
+	InitTexture("Bullet_blue.png", BULLET_BLUE);
+	InitTexture("EnemySpaceShip1.png", SPACESHIPT_ENEMY_1);
+	InitTexture("Large_explosion.png", LARGE_EXPLOSION);
+	InitTexture("thruster.png", THRUSTER);
+	InitTexture("Bullet_orange.png", BULLET_ORANGE);
+	InitTexture("coin.png", COIN);
+	InitTexture("enemy.png", GHOST);
 }
 
 void dae::ResourceManager::InitTexture(const std::string& file, const TextureName name)

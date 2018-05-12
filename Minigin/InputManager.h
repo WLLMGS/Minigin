@@ -76,6 +76,9 @@ namespace dae
 		bool IsKeyPressed(int key);
 		Command* HandleInput();
 		void Clear();
+		void GetThumbstickLeft(float& x, float& y);
+		void GetThumbstickRight(float& x, float& y);
+
 	private:
 		XINPUT_STATE currentState{};
 		Command* m_pRight = new MoveRightCommand();
