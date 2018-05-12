@@ -16,8 +16,8 @@ PacmanPrefab::PacmanPrefab()
 	
 	auto collider = new ColliderComponent(true);
 	collider->SetCollisionGroup(GameSettings::CollisionGroups::PLAYER);
-	collider->SetOffset(2.0f, 2.0f);
-	collider->SetDimensions(24.0f, 24.0f);
+	/*collider->SetOffset(2.0f, 2.0f);
+	collider->SetDimensions(24.0f, 24.0f);*/
 
 	AddComponent(collider);
 
@@ -34,7 +34,17 @@ void PacmanPrefab::Update(float elapsedSec)
 
 	if (command) command->Execute(this);
 
-	Move(elapsedSec);
+	m_MoveCooldown -= elapsedSec;
+
+	if(m_MoveCooldown <= 0.0f)
+	{
+		m_MoveCooldown = m_Cooldown;
+		Movement();
+	}
+
+	//Move(elapsedSec);
+
+
 }
 
 void PacmanPrefab::OnTriggerEnter(ColliderComponent* other)
@@ -46,6 +56,25 @@ void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)
 {
 	UNREFERENCED_PARAMETER(other);
 	//if (other->gameObject->GetTag() == "Ghost") Destroy();
+}
+
+void PacmanPrefab::Movement()
+{
+	switch(m_Direction)
+	{
+	case Right:
+		Transform()->Translate(GameSettings::TileSize / 2.0f - 2.0f, 0, 0);
+		break;
+	case Left:
+		Transform()->Translate(-GameSettings::TileSize / 2.0f - 2.0f, 0, 0);
+		break;
+	case Up:
+		Transform()->Translate(0, -GameSettings::TileSize / 2.0f - 2.0f, 0);
+		break;
+	case Down:
+		Transform()->Translate(0, GameSettings::TileSize / 2.0f - 2.0f, 0);
+		break;
+	}
 }
 
 

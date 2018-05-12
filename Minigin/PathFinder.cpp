@@ -60,7 +60,7 @@ vector<dae::GridCell*> PathFinder::FindPath(dae::GridCell* target, dae::GridCell
 		}
 
 		reverse(path.begin(), path.end());
-		Logger::GetInstance().Log("found");
+		//Logger::GetInstance().Log("found");
 	}
 
 	return path;

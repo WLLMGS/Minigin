@@ -1,6 +1,30 @@
-﻿  GhostPrefab.cpp
+﻿  MiniginPCH.cpp
+  BaseComponent.cpp
+  CoinPrefab.cpp
+  ColliderComponent.cpp
+  EngineTestScene.cpp
+  Font.cpp
+  FpsCounterPrefab.cpp
+  GameActor.cpp
+  GameObject.cpp
+  GhostPrefab.cpp
+  InputManager.cpp
   LevelLoader.cpp
+  Log.cpp
+  Logger.cpp
+  Minigin.cpp
+  MiniginGame.cpp
+  PacmanPrefab.cpp
   PathFinder.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  Compiling...
+  SceneManager.cpp
+  SpriteComponent.cpp
+  TextComponent.cpp
+  TransformComponent.cpp
+  WallPrefab.cpp
   Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Release\Minigin.lib
   D:\Programming 4\source\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

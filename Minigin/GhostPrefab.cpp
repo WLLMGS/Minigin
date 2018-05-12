@@ -34,11 +34,20 @@ void GhostPrefab::Update(float elapsedSec)
 	}
 	if (m_pGrid.empty()) m_pGrid = dae::LevelLoader::Grid;
 
-	CalculateMovement(elapsedSec);
+	m_MoveCooldown -= elapsedSec;
+
+	if(m_MoveCooldown <= 0.0f)
+	{
+		m_MoveCooldown = m_Cooldown;
+		CalculateMovement(elapsedSec);
+	}
 }
 
 void GhostPrefab::CalculateMovement(float elapsedSec)
 {
+
+	UNREFERENCED_PARAMETER(elapsedSec);
+
 	float xP = m_pPlayer->Transform()->GetPosition().x;
 	float yP = m_pPlayer->Transform()->GetPosition().y;
 
@@ -59,6 +68,53 @@ void GhostPrefab::CalculateMovement(float elapsedSec)
 
 	auto path = PathFinder::FindPath(m_pGrid[indexP], m_pGrid[index]);
 
+	if (path.size() > 1)
+		{
+			auto cell = path[1];
+			auto current = m_pGrid[index];
+
+
+			float horz = 0.0f;
+			float vert = 0.0f;
+
+			if(cell->xIndex == current->xIndex && cell->yIndex > current->yIndex)
+			{
+				//up
+				vert = m_Speed;
+			}
+			else if (cell->xIndex == current->xIndex && cell->yIndex < current->yIndex)
+			{
+				//down
+				vert = -m_Speed;
+			}
+			if (cell->yIndex == current->yIndex && cell->xIndex > current->xIndex)
+			{
+				//right
+				horz = m_Speed;
+			}
+			else if (cell->yIndex == current->yIndex && cell->xIndex < current->xIndex)
+			{
+				//left
+				horz = -m_Speed;
+			}
+
+
+
+			//cout << "Target: " << cell->x << " " << cell->y << endl;
+			//cout << "Source: " << current->x << " " << current->y << endl;
+
+			cout << horz << " " << vert << endl;
+
+			//Transform()->Translate(horz * elapsedSec, vert * elapsedSec, 0);
+			Transform()->SetPosition(cell->x, cell->y);
+
+
+		}
+	else
+	{
+		cout << "not good\n";
+	}
+	
 	
 }
 
