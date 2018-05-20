@@ -60,7 +60,10 @@ dae::Font* dae::ResourceManager::RequestFont(const FontName name)
 
 void dae::ResourceManager::InitResources()
 {
-	InitFont("SansSerifFont.ttf", GameSettings::FontSize, DEFAULT);
+	InitFont("game_over.ttf", GameSettings::FontSize, DEFAULT);
+	InitFont("game_over.ttf", GameSettings::FontSize * 3, MEDIUM);
+	InitFont("game_over.ttf", GameSettings::FontSize * 4, BIG);
+
 	InitTexture("pacman-spritesheet.png", PACMAN);
 	InitTexture("wallTile.png", WALL_1);
 	InitTexture("SpaceShip1.png", SPACESHIP_1);

@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 
 	//run game
 	game.Run();
-
+	
 	//clean everything
 	game.Cleanup();
 

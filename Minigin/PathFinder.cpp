@@ -46,6 +46,8 @@ vector<dae::GridCell*> PathFinder::FindPath(dae::GridCell* target, dae::GridCell
 
 	vector<dae::GridCell*> path;
 
+	
+
 	if(found)
 	{	
 		dae::GridCell* p = current;
@@ -63,6 +65,7 @@ vector<dae::GridCell*> PathFinder::FindPath(dae::GridCell* target, dae::GridCell
 		//Logger::GetInstance().Log("found");
 	}
 
+	path.push_back(target);
 	return path;
 }
 
@@ -83,19 +86,21 @@ vector<dae::GridCell*> PathFinder::GetNeighbors(int x, int y)
 	int up = (y + 1) * width + x;
 	int down = (y - 1) * width + x;
 
-	if (y > 0)
+
+	
+	if (y > 0 && y <= height)
 	{
 		if(grid[down]->isAccessible) result.push_back(grid[down]);
 	}
-	if (y < height)
+	if (y < height && y >= 0)
 	{
 		if(grid[up]->isAccessible) result.push_back(grid[up]);
 	}
-	if (x > 0)
+	if (x > 0 && x <= width)
 	{
 		if(grid[left]->isAccessible) result.push_back(grid[left]);
 	}
-	if (x < width)
+	if (x < width && x >= 0)
 	{
 		if(grid[right]->isAccessible) result.push_back(grid[right]);
 	}

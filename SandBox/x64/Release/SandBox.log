@@ -1,10 +1,7 @@
-﻿  stdafx.cpp
-  Game.cpp
-  Main.cpp
-  PacmanDemoScene.cpp
-     Creating library D:\Programming 4\source\Minigin\x64\Release\SandBox.lib and object D:\Programming 4\source\Minigin\x64\Release\SandBox.exp
+﻿     Creating library D:\GitHub\Minigin\x64\Release\SandBox.lib and object D:\GitHub\Minigin\x64\Release\SandBox.exp
   Generating code
-  All 1481 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  2 of 1718 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  SandBox.vcxproj -> D:\Programming 4\source\Minigin\x64\Release\SandBox.exe
-  SandBox.vcxproj -> D:\Programming 4\source\Minigin\x64\Release\SandBox.pdb (Full PDB)
+  SandBox.vcxproj -> D:\GitHub\Minigin\x64\Release\SandBox.exe

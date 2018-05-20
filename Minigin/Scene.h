@@ -21,6 +21,7 @@ namespace dae
 		Scene& operator=(Scene&& other) = delete;
 		void AddChild(GameObject* obj);
 		GameObject* FindGameObject(string name);
+		vector<GameObject*> GetObjectsWithTag(string tag);
 	protected:
 		std::vector < GameObject*> m_pGameObjects{};
 	private: 

@@ -18,6 +18,8 @@ namespace dae
 		Scene* GetScene(string name);
 		void CleanUp();
 		void NextScene();
+		void RemoveScene(string name);
+		void GoToScene(string name);
 	private:
 		std::vector<Scene*> m_pScenes;
 		int m_ActiveSceneID = 0;

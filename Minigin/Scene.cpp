@@ -45,6 +45,18 @@ dae::GameObject* dae::Scene::FindGameObject(string name)
 	return nullptr;
 }
 
+vector<dae::GameObject*> dae::Scene::GetObjectsWithTag(string tag)
+{
+	vector<GameObject*> result;
+
+	for(auto obj : m_pGameObjects)
+	{
+		if (obj->GetTag() == tag) result.push_back(obj);
+	}
+
+	return result;
+}
+
 void dae::Scene::RootUpdate(float elapsedSec)
 {
 	Update(elapsedSec);

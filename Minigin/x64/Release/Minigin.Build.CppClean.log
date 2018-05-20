@@ -1,35 +1,35 @@
-d:\programming 4\source\minigin\minigin\x64\release\minigin.pch
-d:\programming 4\source\minigin\minigin\x64\release\minigin.pdb
-d:\programming 4\source\minigin\minigin\x64\release\miniginpch.obj
-d:\programming 4\source\minigin\minigin\x64\release\scene.obj
-d:\programming 4\source\minigin\minigin\x64\release\resourcemanager.obj
-d:\programming 4\source\minigin\minigin\x64\release\renderer.obj
-d:\programming 4\source\minigin\minigin\x64\release\pathfinder.obj
-d:\programming 4\source\minigin\minigin\x64\release\pacmanprefab.obj
-d:\programming 4\source\minigin\minigin\x64\release\minigingame.obj
-d:\programming 4\source\minigin\minigin\x64\release\minigin.obj
-d:\programming 4\source\minigin\minigin\x64\release\logger.obj
-d:\programming 4\source\minigin\minigin\x64\release\log.obj
-d:\programming 4\source\minigin\minigin\x64\release\levelloader.obj
-d:\programming 4\source\minigin\minigin\x64\release\inputmanager.obj
-d:\programming 4\source\minigin\minigin\x64\release\ghostprefab.obj
-d:\programming 4\source\minigin\minigin\x64\release\gameobject.obj
-d:\programming 4\source\minigin\minigin\x64\release\gameactor.obj
-d:\programming 4\source\minigin\minigin\x64\release\fpscounterprefab.obj
-d:\programming 4\source\minigin\minigin\x64\release\font.obj
-d:\programming 4\source\minigin\minigin\x64\release\enginetestscene.obj
-d:\programming 4\source\minigin\minigin\x64\release\collidercomponent.obj
-d:\programming 4\source\minigin\minigin\x64\release\coinprefab.obj
-d:\programming 4\source\minigin\minigin\x64\release\basecomponent.obj
-d:\programming 4\source\minigin\minigin\x64\release\wallprefab.obj
-d:\programming 4\source\minigin\minigin\x64\release\transformcomponent.obj
-d:\programming 4\source\minigin\minigin\x64\release\textcomponent.obj
-d:\programming 4\source\minigin\minigin\x64\release\spritecomponent.obj
-d:\programming 4\source\minigin\minigin\x64\release\scenemanager.obj
-d:\programming 4\source\minigin\x64\release\minigin.lib
-d:\programming 4\source\minigin\minigin\x64\release\minigin.tlog\cl.command.1.tlog
-d:\programming 4\source\minigin\minigin\x64\release\minigin.tlog\cl.read.1.tlog
-d:\programming 4\source\minigin\minigin\x64\release\minigin.tlog\cl.write.1.tlog
-d:\programming 4\source\minigin\minigin\x64\release\minigin.tlog\lib-link.read.1.tlog
-d:\programming 4\source\minigin\minigin\x64\release\minigin.tlog\lib-link.write.1.tlog
-d:\programming 4\source\minigin\minigin\x64\release\minigin.tlog\lib.command.1.tlog
+d:\github\minigin\minigin\x64\release\minigin.pdb
+d:\github\minigin\minigin\x64\release\pacmanprefab.obj
+d:\github\minigin\minigin\x64\release\fpscounterprefab.obj
+d:\github\minigin\minigin\x64\release\minigin.pch
+d:\github\minigin\minigin\x64\release\miniginpch.obj
+d:\github\minigin\minigin\x64\release\scene.obj
+d:\github\minigin\minigin\x64\release\resourcemanager.obj
+d:\github\minigin\minigin\x64\release\renderer.obj
+d:\github\minigin\minigin\x64\release\pathfinder.obj
+d:\github\minigin\minigin\x64\release\minigingame.obj
+d:\github\minigin\minigin\x64\release\minigin.obj
+d:\github\minigin\minigin\x64\release\logger.obj
+d:\github\minigin\minigin\x64\release\log.obj
+d:\github\minigin\minigin\x64\release\levelloader.obj
+d:\github\minigin\minigin\x64\release\inputmanager.obj
+d:\github\minigin\minigin\x64\release\ghostprefab.obj
+d:\github\minigin\minigin\x64\release\gameobject.obj
+d:\github\minigin\minigin\x64\release\gameactor.obj
+d:\github\minigin\minigin\x64\release\font.obj
+d:\github\minigin\minigin\x64\release\enginetestscene.obj
+d:\github\minigin\minigin\x64\release\collidercomponent.obj
+d:\github\minigin\minigin\x64\release\coinprefab.obj
+d:\github\minigin\minigin\x64\release\basecomponent.obj
+d:\github\minigin\minigin\x64\release\wallprefab.obj
+d:\github\minigin\minigin\x64\release\transformcomponent.obj
+d:\github\minigin\minigin\x64\release\textcomponent.obj
+d:\github\minigin\minigin\x64\release\spritecomponent.obj
+d:\github\minigin\minigin\x64\release\scenemanager.obj
+d:\github\minigin\x64\release\minigin.lib
+d:\github\minigin\minigin\x64\release\minigin.tlog\cl.command.1.tlog
+d:\github\minigin\minigin\x64\release\minigin.tlog\cl.read.1.tlog
+d:\github\minigin\minigin\x64\release\minigin.tlog\cl.write.1.tlog
+d:\github\minigin\minigin\x64\release\minigin.tlog\lib-link.read.1.tlog
+d:\github\minigin\minigin\x64\release\minigin.tlog\lib-link.write.1.tlog
+d:\github\minigin\minigin\x64\release\minigin.tlog\lib.command.1.tlog

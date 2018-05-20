@@ -4,7 +4,8 @@
 #include "TextComponent.h"
 #include "ColliderComponent.h"
 #include "InputManager.h"
-
+#include "Scene.h"
+#include "../SandBox/ScorePrefab.h"
 
 PacmanPrefab::PacmanPrefab()
 {
@@ -25,7 +26,6 @@ PacmanPrefab::PacmanPrefab()
 
 	SetTag("Player");
 	SetName("Player");
-
 }
 
 void PacmanPrefab::Update(float elapsedSec)
@@ -41,21 +41,30 @@ void PacmanPrefab::Update(float elapsedSec)
 		m_MoveCooldown = m_Cooldown;
 		Movement();
 	}
-
-	//Move(elapsedSec);
-
-
 }
 
 void PacmanPrefab::OnTriggerEnter(ColliderComponent* other)
 {
-	if (other->gameObject->GetTag() == "Coin") other->gameObject->Destroy();
+	if (other->gameObject->GetTag() == "Coin")
+	{
+		auto score = GetScene()->FindGameObject("Score");
+		if(score)
+		{
+			ScorePrefab* s = dynamic_cast<ScorePrefab*>(score);
+			s->IncreaseScore(100);
+		}
+
+		other->gameObject->Destroy();
+	}
 }
 
 void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)
 {
-	UNREFERENCED_PARAMETER(other);
-	//if (other->gameObject->GetTag() == "Ghost") Destroy();
+	if(other->gameObject->GetTag() == "Ghost")
+	{
+		SetEnabled(false);
+		dae::SceneManager::GetInstance().GoToScene("Game Over");
+	}
 }
 
 void PacmanPrefab::Movement()

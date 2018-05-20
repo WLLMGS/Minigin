@@ -28,7 +28,9 @@ namespace dae
 	};
 	enum FontName
 	{
-		DEFAULT = 0
+		DEFAULT = 0,
+		MEDIUM = 1,
+		BIG = 2
 	};
 
 	class Texture2D;

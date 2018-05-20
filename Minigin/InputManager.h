@@ -74,11 +74,11 @@ namespace dae
 		bool ProcessInput();
 		bool IsPressed(ControllerButton button) const;
 		bool IsKeyPressed(int key);
-		Command* HandleInput();
+		Command* HandleInput(int playerId = 1);
 		void Clear();
 		void GetThumbstickLeft(float& x, float& y);
 		void GetThumbstickRight(float& x, float& y);
-
+		void Quit();
 	private:
 		XINPUT_STATE currentState{};
 		Command* m_pRight = new MoveRightCommand();
@@ -87,6 +87,7 @@ namespace dae
 		Command* m_pDown = new MoveDownCommand();
 		map<int, bool> m_KeyMap;
 
+		bool m_Quit = false;
 	};
 
 

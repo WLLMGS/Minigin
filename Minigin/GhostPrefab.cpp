@@ -4,17 +4,16 @@
 #include "TextComponent.h"
 #include "Scene.h"
 #include "PathFinder.h"
-
-dae::GameObject* GhostPrefab::m_pPlayer = nullptr;
-vector<dae::GridCell*> GhostPrefab::m_pGrid;
+#include "InputManager.h"
 
 GhostPrefab::GhostPrefab()
 {
 	auto sprite = new dae::SpriteComponent(dae::TextureName::GHOST);
 	AddComponent(sprite);
 
-	/*auto collider = new ColliderComponent(true);
-	AddComponent(collider);*/
+	auto collider = new ColliderComponent(true);
+	
+	AddComponent(collider);
 
 	SetTag("Ghost");
 }
@@ -25,22 +24,50 @@ GhostPrefab::~GhostPrefab()
 }
 
 void GhostPrefab::Update(float elapsedSec)
+{	
+	//lock rotation
+	Transform()->SetRotation(0);
+
+	if(!m_IsControlled)
+	{
+		if (!m_pPlayer)
+		{
+			m_pPlayer = GetScene()->FindGameObject("Player");
+		}
+		if (m_pGrid.empty()) m_pGrid = dae::LevelLoader::Grid;
+
+		m_MoveCooldown -= elapsedSec;
+
+		if (m_MoveCooldown <= 0.0f)
+		{
+			m_MoveCooldown = m_Cooldown;
+			CalculateMovement(elapsedSec);
+		}
+	}
+	else
+	{
+		auto command = dae::InputManager::GetInstance().HandleInput(2);
+
+		if (command) command->Execute(this);
+
+		m_MoveCooldown -= elapsedSec;
+
+		if (m_MoveCooldown <= 0.0f)
+		{
+			m_MoveCooldown = m_Cooldown;
+			Movement();
+		}
+	}
+}
+
+void GhostPrefab::SetControlled(bool controlled)
 {
-	UNREFERENCED_PARAMETER(elapsedSec);
+	m_IsControlled = controlled;
+}
 
-	if(!m_pPlayer)
-	{
-		m_pPlayer = GetScene()->FindGameObject("Player");
-	}
-	if (m_pGrid.empty()) m_pGrid = dae::LevelLoader::Grid;
-
-	m_MoveCooldown -= elapsedSec;
-
-	if(m_MoveCooldown <= 0.0f)
-	{
-		m_MoveCooldown = m_Cooldown;
-		CalculateMovement(elapsedSec);
-	}
+bool GhostPrefab::IsControlled() const
+{
+	return m_IsControlled;
 }
 
 void GhostPrefab::CalculateMovement(float elapsedSec)
@@ -69,53 +96,32 @@ void GhostPrefab::CalculateMovement(float elapsedSec)
 	auto path = PathFinder::FindPath(m_pGrid[indexP], m_pGrid[index]);
 
 	if (path.size() > 1)
-		{
-			auto cell = path[1];
-			auto current = m_pGrid[index];
-
-
-			float horz = 0.0f;
-			float vert = 0.0f;
-
-			if(cell->xIndex == current->xIndex && cell->yIndex > current->yIndex)
-			{
-				//up
-				vert = m_Speed;
-			}
-			else if (cell->xIndex == current->xIndex && cell->yIndex < current->yIndex)
-			{
-				//down
-				vert = -m_Speed;
-			}
-			if (cell->yIndex == current->yIndex && cell->xIndex > current->xIndex)
-			{
-				//right
-				horz = m_Speed;
-			}
-			else if (cell->yIndex == current->yIndex && cell->xIndex < current->xIndex)
-			{
-				//left
-				horz = -m_Speed;
-			}
-
-
-
-			//cout << "Target: " << cell->x << " " << cell->y << endl;
-			//cout << "Source: " << current->x << " " << current->y << endl;
-
-			cout << horz << " " << vert << endl;
-
-			//Transform()->Translate(horz * elapsedSec, vert * elapsedSec, 0);
-			Transform()->SetPosition(cell->x, cell->y);
-
-
-		}
-	else
 	{
-		cout << "not good\n";
+		auto cell = path[1];
+		
+		Transform()->SetPosition(cell->x, cell->y);
 	}
 	
 	
+}
+
+void GhostPrefab::Movement()
+{
+	switch (m_Direction)
+	{
+	case Right:
+		Transform()->Translate(GameSettings::TileSize, 0, 0);
+		break;
+	case Left:
+		Transform()->Translate(-GameSettings::TileSize, 0, 0);
+		break;
+	case Up:
+		Transform()->Translate(0, -GameSettings::TileSize, 0);
+		break;
+	case Down:
+		Transform()->Translate(0, GameSettings::TileSize, 0);
+		break;
+	}
 }
 
 

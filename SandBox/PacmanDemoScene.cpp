@@ -7,24 +7,14 @@
 #include <SDL.h>
 #include <iostream>
 #include "PathFinder.h"
+#include "ScorePrefab.h"
+#include "GhostPrefab.h"
 
 
 PacmanDemoScene::PacmanDemoScene() :
-Scene("Pacman demo scene")
-{
-	
-	m_pPacman = new PacmanPrefab();
-	m_pPacman->Translate(10, 100, 1);
-	AddChild(m_pPacman);
-
-
-
-	dae::LevelLoader::LoadLevel("level01", this);
-	
-	auto fpsCounter = new FpsCounterPrefab();
-	//fpsCounter->Translate(10, 10, 1);
-	AddChild(fpsCounter);
-
+Scene("Pacman Demo Scene")
+{	
+	Init();
 }
 
 
@@ -37,16 +27,40 @@ void PacmanDemoScene::Update(float elapsedSec)
 {
 	UNREFERENCED_PARAMETER(elapsedSec);
 
-	/*auto grid = dae::LevelLoader::Grid;
-
-	int width = int(GameSettings::WindowSizeX / GameSettings::TileSize);
-	
-	auto c1 = grid[width * 4 + 2];
-	auto c2 = grid[width * 1 + 6];
-
-	auto path = PathFinder::FindPath(c2, c1);*/
 }
 
 void PacmanDemoScene::Render()
 {
+}
+
+void PacmanDemoScene::Reset()
+{
+	for(auto obj : m_pGameObjects)
+	{
+		delete obj;
+		obj = nullptr;
+	}
+
+	m_pGameObjects.clear();
+
+	Init();
+}
+
+void PacmanDemoScene::Init()
+{
+	m_pPacman = new PacmanPrefab();
+	m_pPacman->Translate(10, 100, 1);
+	AddChild(m_pPacman);
+
+	dae::LevelLoader::LoadLevel("level01", this);
+
+	auto score = new ScorePrefab();
+	score->Transform()->SetPosition(GameSettings::WindowSizeX / 2.0f, 10);
+	AddChild(score);
+
+	/*auto ghosts = this->GetObjectsWithTag("Ghost");
+
+	GhostPrefab* ghost1 = static_cast<GhostPrefab*>(ghosts[0]);
+
+	ghost1->SetControlled(true);*/
 }

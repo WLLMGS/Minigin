@@ -17,5 +17,6 @@ private:
 	dae::Font* m_pFont = nullptr;
 	SDL_Color m_Color{255,255,255};
 	SDL_Texture* m_pTexture = nullptr;
+	string m_Text;
 };
 

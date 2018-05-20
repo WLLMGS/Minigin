@@ -1,40 +1,14 @@
-﻿  MiniginPCH.cpp
-  BaseComponent.cpp
-  CoinPrefab.cpp
-  ColliderComponent.cpp
-  EngineTestScene.cpp
-  Font.cpp
-  FpsCounterPrefab.cpp
-  GameActor.cpp
-  GameObject.cpp
-  GhostPrefab.cpp
-  InputManager.cpp
-  LevelLoader.cpp
-  Log.cpp
-  Logger.cpp
-  Minigin.cpp
-  MiniginGame.cpp
-  PacmanPrefab.cpp
-  PathFinder.cpp
-  Renderer.cpp
-  ResourceManager.cpp
-  Scene.cpp
-  Compiling...
-  SceneManager.cpp
-  SpriteComponent.cpp
-  TextComponent.cpp
-  TransformComponent.cpp
-  WallPrefab.cpp
-  Minigin.vcxproj -> D:\Programming 4\source\Minigin\x64\Release\Minigin.lib
-  D:\Programming 4\source\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
+﻿  PathFinder.cpp
+  Minigin.vcxproj -> D:\GitHub\Minigin\x64\Release\Minigin.lib
+  D:\GitHub\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_image\lib\x64\zlib1.dll
   6 File(s) copied
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
-  D:\Programming 4\source\Minigin\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  D:\GitHub\Minigin\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
   2 File(s) copied

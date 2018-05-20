@@ -3,7 +3,8 @@
 #include "Renderer.h"
 #include "GameObject.h"
 
-TextComponent::TextComponent(dae::FontName fontName,const SDL_Color& color,  const string& text)
+TextComponent::TextComponent(dae::FontName fontName,const SDL_Color& color,  const string& text):
+m_Text(text)
 {
 	m_pFont = dae::ResourceManager::GetInstance().RequestFont(fontName);
 	m_Color = color;
@@ -29,6 +30,7 @@ void TextComponent::Render()
 void TextComponent::SetColor(const SDL_Color& color)
 {
 	m_Color = color;
+	SetText(m_Text);
 }
 
 void TextComponent::SetText(const string& text)

@@ -9,6 +9,8 @@ bool dae::InputManager::ProcessInput()
 	ZeroMemory(&currentState, sizeof(XINPUT_STATE));
 	XInputGetState(0, &currentState);
 
+	if (m_Quit) return false;
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) 
@@ -61,21 +63,31 @@ bool dae::InputManager::IsKeyPressed(int key)
 	
 }
 
-Command* dae::InputManager::HandleInput()
+Command* dae::InputManager::HandleInput(int playerId)
 {
-	//controller
-	if (IsPressed(ControllerButton::DpadRight)) return m_pRight;
-	if (IsPressed(ControllerButton::DpadLeft)) return m_pLeft;
-	if (IsPressed(ControllerButton::DpadUp)) return m_pUp;
-	if (IsPressed(ControllerButton::DpadDown)) return m_pDown;
+	if(playerId == 1)
+	{
+		//controller
+		if (IsPressed(ControllerButton::DpadRight)) return m_pRight;
+		if (IsPressed(ControllerButton::DpadLeft)) return m_pLeft;
+		if (IsPressed(ControllerButton::DpadUp)) return m_pUp;
+		if (IsPressed(ControllerButton::DpadDown)) return m_pDown;
 
-	//Keyboard
-	//2 keys because of azerty / qwerty
-	if (IsKeyPressed(SDLK_z) || IsKeyPressed(SDLK_w)) return m_pUp;
-	if (IsKeyPressed(SDLK_s)) return m_pDown;
-	//2 keys because of azerty / qwerty
-	if (IsKeyPressed(SDLK_q) || IsKeyPressed(SDLK_a)) return m_pLeft;
-	if (IsKeyPressed(SDLK_d)) return m_pRight;
+		//Keyboard
+		//2 keys because of azerty / qwerty
+		if (IsKeyPressed(SDLK_z) || IsKeyPressed(SDLK_w)) return m_pUp;
+		if (IsKeyPressed(SDLK_s)) return m_pDown;
+		//2 keys because of azerty / qwerty
+		if (IsKeyPressed(SDLK_q) || IsKeyPressed(SDLK_a)) return m_pLeft;
+		if (IsKeyPressed(SDLK_d)) return m_pRight;
+	}
+	else if(playerId == 2)
+	{
+		if (IsKeyPressed(SDLK_RIGHT)) return m_pRight;
+		if (IsKeyPressed(SDLK_LEFT)) return m_pLeft;
+		if (IsKeyPressed(SDLK_UP)) return m_pUp;
+		if (IsKeyPressed(SDLK_DOWN)) return m_pDown;
+	}
 
 	return nullptr;
 }
@@ -119,6 +131,11 @@ void dae::InputManager::GetThumbstickRight(float& x, float& y)
 	if (abs(x) < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) x = 0.0f;
 	if (abs(y) < XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) y = 0.0f;
 
+}
+
+void dae::InputManager::Quit()
+{
+	m_Quit = true;
 }
 
 

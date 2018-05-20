@@ -9,6 +9,7 @@ vector<dae::GridCell*> dae::LevelLoader::Grid;
 
 void dae::LevelLoader::LoadLevel(string levelName, dae::Scene* scene)
 {
+	Grid.clear();
 	string path = "Resources/Levels/";
 	path += levelName;
 	path += ".csv";
