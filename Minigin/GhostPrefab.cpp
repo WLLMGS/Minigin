@@ -6,7 +6,8 @@
 #include "PathFinder.h"
 #include "InputManager.h"
 
-GhostPrefab::GhostPrefab()
+GhostPrefab::GhostPrefab() :
+m_State(Chasing)
 {
 	auto sprite = new dae::SpriteComponent(dae::TextureName::GHOST);
 	AddComponent(sprite);
@@ -28,35 +29,21 @@ void GhostPrefab::Update(float elapsedSec)
 	//lock rotation
 	Transform()->SetRotation(0);
 
-	if(!m_IsControlled)
+	//check if there needs to be a state switch
+	if(m_State != Controlled) HandleStateSwitching(elapsedSec);
+
+	//handle behaviour depending to state
+	switch (m_State)
 	{
-		if (!m_pPlayer)
-		{
-			m_pPlayer = GetScene()->FindGameObject("Player");
-		}
-		if (m_pGrid.empty()) m_pGrid = dae::LevelLoader::Grid;
-
-		m_MoveCooldown -= elapsedSec;
-
-		if (m_MoveCooldown <= 0.0f)
-		{
-			m_MoveCooldown = m_Cooldown;
-			CalculateMovement(elapsedSec);
-		}
-	}
-	else
-	{
-		auto command = dae::InputManager::GetInstance().HandleInput(2);
-
-		if (command) command->Execute(this);
-
-		m_MoveCooldown -= elapsedSec;
-
-		if (m_MoveCooldown <= 0.0f)
-		{
-			m_MoveCooldown = m_Cooldown;
-			Movement();
-		}
+	case Chasing:
+		HandleChasing(elapsedSec);
+		break;
+	case Running:
+		HandleRunning(elapsedSec);
+		break;
+	case Controlled:
+		HandleControlled(elapsedSec);
+		break;
 	}
 }
 
@@ -70,13 +57,32 @@ bool GhostPrefab::IsControlled() const
 	return m_IsControlled;
 }
 
-void GhostPrefab::CalculateMovement(float elapsedSec)
+GhostPrefab::State GhostPrefab::GetState() const
+{
+	return m_State;
+}
+
+void GhostPrefab::SetState(State state)
+{
+	m_State = state;
+
+	if(m_State == Chasing)
+	{
+		m_StateTimer = m_ChaseTime;
+	}
+	else m_StateTimer = m_RunTime;
+}
+
+void GhostPrefab::CalculateMovement(float elapsedSec, float targetX, float targetY)
 {
 
 	UNREFERENCED_PARAMETER(elapsedSec);
 
-	float xP = m_pPlayer->Transform()->GetPosition().x;
-	float yP = m_pPlayer->Transform()->GetPosition().y;
+	//float xP = m_pPlayer->Transform()->GetPosition().x;
+	//float yP = m_pPlayer->Transform()->GetPosition().y;
+
+	float xP = targetX;
+	float yP = targetY;
 
 	int gridXP = int(xP / GameSettings::TileSize);
 	int gridYP = int(yP / GameSettings::TileSize);
@@ -143,6 +149,68 @@ void GhostPrefab::Movement()
 	case Down:
 		Transform()->Translate(0, GameSettings::TileSize, 0);
 		break;
+	}
+}
+
+void GhostPrefab::HandleChasing(float elapsedSec)
+{
+	if (!m_pPlayer)
+	{
+		m_pPlayer = GetScene()->FindGameObject("Player");
+	}
+	if (m_pGrid.empty()) m_pGrid = dae::LevelLoader::Grid;
+
+	m_MoveCooldown -= elapsedSec;
+
+	if (m_MoveCooldown <= 0.0f)
+	{
+		m_MoveCooldown = m_Cooldown;
+		CalculateMovement(elapsedSec, m_pPlayer->Transform()->GetPosition().x, m_pPlayer->Transform()->GetPosition().y);
+	}
+}
+
+void GhostPrefab::HandleRunning(float elapsedSec)
+{
+	m_MoveCooldown -= elapsedSec;
+
+	if (m_MoveCooldown <= 0.0f)
+	{
+		m_MoveCooldown = m_Cooldown;
+		CalculateMovement(elapsedSec, GetSpawnPosition().x, GetSpawnPosition().y);
+	}
+}
+
+void GhostPrefab::HandleControlled(float elapsedSec)
+{
+	auto command = dae::InputManager::GetInstance().HandleInput(2);
+
+	if (command) command->Execute(this);
+
+	m_MoveCooldown -= elapsedSec;
+
+	if (m_MoveCooldown <= 0.0f)
+	{
+		m_MoveCooldown = m_Cooldown;
+		Movement();
+	}
+}
+
+void GhostPrefab::HandleStateSwitching(float elapsedSec)
+{
+	m_StateTimer -= elapsedSec;
+
+	if(m_StateTimer <= 0.0f)
+	{
+		if(m_State == Chasing)
+		{
+			m_State = Running;
+			m_StateTimer = m_RunTime;
+		}
+		else
+		{
+			m_State = Chasing;
+			m_StateTimer = m_ChaseTime;
+		}
 	}
 }
 

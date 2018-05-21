@@ -61,27 +61,17 @@ void PacmanPrefab::OnTriggerEnter(ColliderComponent* other)
 
 void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)
 {
-	if(other->gameObject->GetTag() == "Ghost")
+	if (other->gameObject->GetTag() == "Ghost")
 	{
 		GhostPrefab* ghost = static_cast<GhostPrefab*>(other->gameObject);
-		Direction ghostDir = ghost->GetDirection();
-		Direction dir = GetDirection();
+		GhostPrefab::State state = ghost->GetState();
 
-		if(ghostDir == dir)
+		if (state == GhostPrefab::Running)
 		{
-			//&& ghost is not running
-			if (m_Lives > 0)
-			{
-				m_Lives -= 1;
-				Transform()->SetPosition(GetSpawnPosition().x, GetSpawnPosition().y);
-			}
-			else
-			{
-				SetEnabled(false);
-				dae::SceneManager::GetInstance().GoToScene("Game Over");
-			}
+			//kill ghost
+			ghost->SetEnabled(false);
 		}
-		if(ghostDir != dir)
+		else
 		{
 			if (m_Lives > 0)
 			{
@@ -90,10 +80,10 @@ void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)
 			}
 			else
 			{
-				//check later if ghost is running
 				SetEnabled(false);
 				dae::SceneManager::GetInstance().GoToScene("Game Over");
 			}
+
 		}
 
 	}
