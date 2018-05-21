@@ -4,6 +4,7 @@
 #include "WallPrefab.h"
 #include "CoinPrefab.h"
 #include "GhostPrefab.h"
+#include "PacmanPrefab.h"
 
 vector<dae::GridCell*> dae::LevelLoader::Grid;
 
@@ -63,15 +64,26 @@ void dae::LevelLoader::LoadLevel(string levelName, dae::Scene* scene)
 					auto player = scene->FindGameObject("Player");
 					if (player) player->Transform()->SetPosition(x * tileSize, y * tileSize);
 
+					PacmanPrefab* pacman = static_cast<PacmanPrefab*>(player);
+					pacman->SetSpawnPosition(tileSize * x, tileSize * y);
 					cell->isAccessible = true;
+
+					auto coin = new CoinPrefab();
+					coin->Translate(x * tileSize, y * tileSize, 0);
+					scene->AddChild(coin);
 				}
 				else if(element == "G")
 				{
 					auto ghost = new GhostPrefab();
 					ghost->Transform()->SetPosition(tileSize * x, tileSize * y);
+					ghost->SetSpawnPosition(tileSize * x, tileSize * y);
 					scene->AddChild(ghost);
 
 					cell->isAccessible = true;
+
+					auto coin = new CoinPrefab();
+					coin->Translate(x * tileSize, y * tileSize, 0);
+					scene->AddChild(coin);
 				}
 				Grid.push_back(cell);
 

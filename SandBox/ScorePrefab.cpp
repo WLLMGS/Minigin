@@ -6,7 +6,7 @@
 
 ScorePrefab::ScorePrefab()
 {
-	m_pTxtScore = new TextComponent(dae::FontName::DEFAULT, { 255,0,0,255 }, "Score: ");
+	m_pTxtScore = new TextComponent(dae::FontName::MEDIUM, { 255,0,0,255 }, "Score: ");
 	AddComponent(m_pTxtScore);
 
 	SetName("Score");

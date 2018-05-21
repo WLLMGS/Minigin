@@ -9,7 +9,6 @@ GameActor::GameActor()
 
 GameActor::~GameActor()
 {
-
 }
 
 
@@ -28,6 +27,22 @@ void GameActor::SetDirection(const Direction direction)
 float GameActor::GetSpeed() const
 {
 	return m_Speed;
+}
+
+Direction GameActor::GetDirection() const
+{
+	return m_Direction;
+}
+
+void GameActor::SetSpawnPosition(float x, float y)
+{
+	m_SpawnPosition.x = x;
+	m_SpawnPosition.y = y;
+}
+
+glm::vec3 GameActor::GetSpawnPosition() const
+{
+	return m_SpawnPosition;
 }
 
 void GameActor::Move(float elapsedSec)

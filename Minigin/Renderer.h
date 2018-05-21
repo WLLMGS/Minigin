@@ -19,9 +19,9 @@ namespace dae
 
 		void RenderTexture(SDL_Texture* texture, float x, float y) const;
 		void RenderTexture(SDL_Texture* texture, float x, float y, float width, float height) const;
-		void RenderTexture(SDL_Texture* texture, float x, float y, float width, float height, float angle) const;
+		void RenderTexture(SDL_Texture* texture, float x, float y, float width, float height, float angle, bool flip = false) const;
 		void RenderTexture(SDL_Texture* texture, float x, float y, float width, float height, float angle
-		,float sourceX, float sourceY, float sourceWidth, float sourceHeight) const;
+		,float sourceX, float sourceY, float sourceWidth, float sourceHeight, bool flip = false) const;
 
 		void RenderFillRectangle(float x, float y, float width, float height);
 

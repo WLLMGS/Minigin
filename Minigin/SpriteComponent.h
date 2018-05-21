@@ -20,6 +20,7 @@ namespace dae
 		void SetAnimationParameters(int amountOfFrames, int framesPerSecond, float width, float height);
 		void SetTexture(int textureName);
 		void SetDimensions(float width, float height);
+		void SetMirrored(bool mirrored);
 	private:
 		void CalculateAnimations(float elapsedSec);
 	private:
@@ -37,6 +38,8 @@ namespace dae
 		int m_FramesPerSecond = 0;
 		float m_StartHeight = 0.f;
 		float m_StartWidth = 0.f;
+
+		bool m_IsMirrored = false;
 
 	};
 }

@@ -85,17 +85,9 @@ void GameOverScene::InitButtons()
 
 	auto restart = []() ->void
 	{
-		////resetting scene
-		//auto scene = dae::SceneManager::GetInstance().GetScene("Pacman Demo Scene");
-		//PacmanDemoScene* pacmanScene = static_cast<PacmanDemoScene*>(scene);
-		//pacmanScene->Reset();
-		//
-		//dae::SceneManager::GetInstance().GoToScene("Pacman Demo Scene");
-
 		dae::SceneManager::GetInstance().RemoveScene("Pacman Demo Scene");
 		dae::SceneManager::GetInstance().AddScene(new PacmanDemoScene());
 		dae::SceneManager::GetInstance().GoToScene("Pacman Demo Scene");
-
 	};
 
 	button->SetAction(restart);

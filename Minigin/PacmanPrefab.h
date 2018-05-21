@@ -14,5 +14,6 @@ public:
 private:
 	const float m_Cooldown = 0.2f;
 	float m_MoveCooldown = 0.2f;
+	int m_Lives = 3;
 };
 

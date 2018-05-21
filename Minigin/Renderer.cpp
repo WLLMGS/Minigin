@@ -53,7 +53,7 @@ void dae::Renderer::RenderTexture(SDL_Texture* texture, const float x, const flo
 }
 
 void dae::Renderer::RenderTexture(SDL_Texture* texture, float x, float y, float width, float height,
-	float angle) const
+	float angle, bool flip) const
 {
 	SDL_Rect dst;
 	dst.x = static_cast<int>(x);
@@ -65,11 +65,18 @@ void dae::Renderer::RenderTexture(SDL_Texture* texture, float x, float y, float 
 	center.x = int(dst.w / 2.0f);
 	center.y = int(dst.h / 2.0f);
 
-	SDL_RenderCopyEx(GetSDLRenderer(), texture, nullptr, &dst, double(angle), &center,SDL_FLIP_NONE);
+	SDL_RendererFlip mirror;
+
+	if (flip) mirror = SDL_FLIP_HORIZONTAL;
+	else mirror = SDL_FLIP_NONE;
+
+
+
+	SDL_RenderCopyEx(GetSDLRenderer(), texture, nullptr, &dst, double(angle), &center,mirror);
 }
 
 void dae::Renderer::RenderTexture(SDL_Texture* texture, float x, float y, float width, float height, float angle,
-	float sourceX, float sourceY, float sourceWidth, float sourceHeight) const
+	float sourceX, float sourceY, float sourceWidth, float sourceHeight, bool flip) const
 {
 	SDL_Rect dst;
 	dst.x = static_cast<int>(x);
@@ -88,7 +95,12 @@ void dae::Renderer::RenderTexture(SDL_Texture* texture, float x, float y, float 
 	center.x = int(dst.w / 2.0f);
 	center.y = int(dst.h / 2.0f);
 
-	SDL_RenderCopyEx(GetSDLRenderer(), texture, &src, &dst, double(angle), &center, SDL_FLIP_NONE);
+	SDL_RendererFlip mirror;
+
+	if (flip) mirror = SDL_FLIP_HORIZONTAL;
+	else mirror = SDL_FLIP_NONE;
+
+	SDL_RenderCopyEx(GetSDLRenderer(), texture, &src, &dst, double(angle), &center, mirror);
 }
 
 void dae::Renderer::RenderFillRectangle(float x, float y, float width, float height)

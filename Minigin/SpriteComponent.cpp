@@ -31,7 +31,8 @@ void dae::SpriteComponent::Render()
 			, m_StartWidth + m_CurrentFrame * m_TileWidth
 			, m_StartHeight,
 			m_TileWidth,
-			m_TileHeight);
+			m_TileHeight,
+			m_IsMirrored);
 	}
 	else
 	{
@@ -39,11 +40,12 @@ void dae::SpriteComponent::Render()
 			, gameObject->Transform()->GetPosition().y
 			, m_Width * gameObject->Transform()->GetScale().x
 			, m_Height * gameObject->Transform()->GetScale().y
-			, gameObject->Transform()->GetAngle(),
-			m_StartWidth,
-			m_StartHeight,
-			m_Width,
-			m_Height
+			, gameObject->Transform()->GetAngle()
+			,m_StartWidth
+			,m_StartHeight
+			,m_Width
+			,m_Height
+			, m_IsMirrored
 			);
 	}
 }
@@ -81,6 +83,11 @@ void dae::SpriteComponent::SetDimensions(float width, float height)
 {
 	m_Width = width;
 	m_Height = height;
+}
+
+void dae::SpriteComponent::SetMirrored(bool mirrored)
+{
+	m_IsMirrored = mirrored;
 }
 
 void dae::SpriteComponent::CalculateAnimations(float elapsedSec)

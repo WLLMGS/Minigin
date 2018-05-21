@@ -6,6 +6,7 @@
 #include "InputManager.h"
 #include "Scene.h"
 #include "../SandBox/ScorePrefab.h"
+#include "GhostPrefab.h"
 
 PacmanPrefab::PacmanPrefab()
 {
@@ -62,8 +63,39 @@ void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)
 {
 	if(other->gameObject->GetTag() == "Ghost")
 	{
-		SetEnabled(false);
-		dae::SceneManager::GetInstance().GoToScene("Game Over");
+		GhostPrefab* ghost = static_cast<GhostPrefab*>(other->gameObject);
+		Direction ghostDir = ghost->GetDirection();
+		Direction dir = GetDirection();
+
+		if(ghostDir == dir)
+		{
+			//&& ghost is not running
+			if (m_Lives > 0)
+			{
+				m_Lives -= 1;
+				Transform()->SetPosition(GetSpawnPosition().x, GetSpawnPosition().y);
+			}
+			else
+			{
+				SetEnabled(false);
+				dae::SceneManager::GetInstance().GoToScene("Game Over");
+			}
+		}
+		if(ghostDir != dir)
+		{
+			if (m_Lives > 0)
+			{
+				m_Lives -= 1;
+				Transform()->SetPosition(GetSpawnPosition().x, GetSpawnPosition().y);
+			}
+			else
+			{
+				//check later if ghost is running
+				SetEnabled(false);
+				dae::SceneManager::GetInstance().GoToScene("Game Over");
+			}
+		}
+
 	}
 }
 

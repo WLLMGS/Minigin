@@ -55,7 +55,7 @@ void PacmanDemoScene::Init()
 	dae::LevelLoader::LoadLevel("level01", this);
 
 	auto score = new ScorePrefab();
-	score->Transform()->SetPosition(GameSettings::WindowSizeX / 2.0f, 10);
+	score->Transform()->SetPosition(GameSettings::WindowSizeX / 2.0f - GameSettings::TileSize * 2.0f, 0);
 	AddChild(score);
 
 	/*auto ghosts = this->GetObjectsWithTag("Ghost");

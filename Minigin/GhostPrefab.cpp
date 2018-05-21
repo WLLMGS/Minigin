@@ -100,6 +100,26 @@ void GhostPrefab::CalculateMovement(float elapsedSec)
 		auto cell = path[1];
 		
 		Transform()->SetPosition(cell->x, cell->y);
+
+		if(cell->x > x)
+		{
+			m_Direction = Right;
+			GetComponent<dae::SpriteComponent>()->SetMirrored(false);
+		}
+		else if(cell->x < x)
+		{
+			m_Direction = Left;
+			GetComponent<dae::SpriteComponent>()->SetMirrored(true);
+		}
+
+		if (cell->y > y)
+		{
+			m_Direction = Down;
+		}
+		else if (cell->y < y)
+		{
+			m_Direction = Up;
+		}
 	}
 	
 	
@@ -111,9 +131,11 @@ void GhostPrefab::Movement()
 	{
 	case Right:
 		Transform()->Translate(GameSettings::TileSize, 0, 0);
+		GetComponent<dae::SpriteComponent>()->SetMirrored(false);
 		break;
 	case Left:
 		Transform()->Translate(-GameSettings::TileSize, 0, 0);
+		GetComponent<dae::SpriteComponent>()->SetMirrored(true);
 		break;
 	case Up:
 		Transform()->Translate(0, -GameSettings::TileSize, 0);
