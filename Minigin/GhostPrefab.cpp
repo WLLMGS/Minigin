@@ -47,15 +47,11 @@ void GhostPrefab::Update(float elapsedSec)
 	}
 }
 
-void GhostPrefab::SetControlled(bool controlled)
+void GhostPrefab::SetControlled()
 {
-	m_IsControlled = controlled;
+	SetState(Controlled);
 }
 
-bool GhostPrefab::IsControlled() const
-{
-	return m_IsControlled;
-}
 
 GhostPrefab::State GhostPrefab::GetState() const
 {
@@ -136,20 +132,19 @@ void GhostPrefab::Movement()
 	switch (m_Direction)
 	{
 	case Right:
-		Transform()->Translate(GameSettings::TileSize, 0, 0);
-		GetComponent<dae::SpriteComponent>()->SetMirrored(false);
+		Transform()->Translate(GameSettings::TileSize / 2.0f - 2.0f, 0, 0);
 		break;
 	case Left:
-		Transform()->Translate(-GameSettings::TileSize, 0, 0);
-		GetComponent<dae::SpriteComponent>()->SetMirrored(true);
+		Transform()->Translate(-GameSettings::TileSize / 2.0f - 2.0f, 0, 0);
 		break;
 	case Up:
-		Transform()->Translate(0, -GameSettings::TileSize, 0);
+		Transform()->Translate(0, -GameSettings::TileSize / 2.0f - 2.0f, 0);
 		break;
 	case Down:
-		Transform()->Translate(0, GameSettings::TileSize, 0);
+		Transform()->Translate(0, GameSettings::TileSize / 2.0f - 2.0f, 0);
 		break;
 	}
+	Transform()->SetRotation(0);
 }
 
 void GhostPrefab::HandleChasing(float elapsedSec)
@@ -186,7 +181,7 @@ void GhostPrefab::HandleControlled(float elapsedSec)
 
 	if (command) command->Execute(this);
 
-	m_MoveCooldown -= elapsedSec;
+	m_MoveCooldown -= elapsedSec * 2.0f;
 
 	if (m_MoveCooldown <= 0.0f)
 	{

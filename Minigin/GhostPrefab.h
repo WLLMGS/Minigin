@@ -15,9 +15,8 @@ public:
 	GhostPrefab();
 	~GhostPrefab();
 	virtual void Update(float elapsedSec) override;
-	void SetControlled(bool controlled);
-	bool IsControlled() const;
-
+	void SetControlled();
+	
 	State GetState() const;
 	void SetState(State state);
 private:
@@ -28,8 +27,7 @@ private:
 	const float m_Cooldown = 0.5f;
 	float m_MoveCooldown = 0.5f;
 
-	bool m_IsControlled = false;
-
+	
 	State m_State;
 
 	const float m_ChaseTime = 10.0f;
