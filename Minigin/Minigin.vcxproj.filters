@@ -103,6 +103,9 @@
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="PathFinder.h" />
+    <ClInclude Include="PillPrefab.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Minigin.cpp">
@@ -181,5 +184,8 @@
       <Filter>Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="PathFinder.cpp" />
+    <ClCompile Include="PillPrefab.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

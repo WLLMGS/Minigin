@@ -1,7 +1,8 @@
 #pragma once
-#include "GameObject.h"
 
-class MsPacmanPrefab : public dae::GameObject
+#include "GameActor.h"
+
+class MsPacmanPrefab : public GameActor
 {
 public:
 	MsPacmanPrefab();

@@ -57,6 +57,17 @@ void PacmanPrefab::OnTriggerEnter(ColliderComponent* other)
 
 		other->gameObject->Destroy();
 	}
+	if(other->gameObject->GetTag() == "Pill")
+	{
+		vector<GameObject*> ghosts = GetScene()->GetObjectsWithTag("Ghost");
+
+		for(auto obj : ghosts)
+		{
+			GhostPrefab* g = static_cast<GhostPrefab*>(obj);
+			g->SetState(GhostPrefab::Running);
+			other->gameObject->Destroy();
+		}
+	}
 }
 
 void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)

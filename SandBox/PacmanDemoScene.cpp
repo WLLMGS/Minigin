@@ -9,6 +9,7 @@
 #include "PathFinder.h"
 #include "ScorePrefab.h"
 #include "GhostPrefab.h"
+#include "MsPacmanPrefab.h"
 
 
 PacmanDemoScene::PacmanDemoScene(GameMode mode) :
@@ -70,7 +71,10 @@ void PacmanDemoScene::Init()
 	else if(m_Mode == MultiplayerMsPacman)
 	{
 		//spawn ms pacman here
+		auto msPacman = new MsPacmanPrefab();
+		msPacman->Transform()->SetPosition(m_pPacman->Transform()->GetPosition().x, m_pPacman->Transform()->GetPosition().y);
 
+		AddChild(msPacman);
 	}
 	
 }

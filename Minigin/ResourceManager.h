@@ -14,7 +14,8 @@ namespace dae
 		WALL_1 = 1,
 		COIN = 2,
 		GHOST = 3,
-		MSPACMAN = 4
+		MSPACMAN = 4,
+		PILL = 5
 	};
 	enum FontName
 	{

@@ -5,6 +5,7 @@
 #include "CoinPrefab.h"
 #include "GhostPrefab.h"
 #include "PacmanPrefab.h"
+#include "PillPrefab.h"
 
 vector<dae::GridCell*> dae::LevelLoader::Grid;
 
@@ -81,9 +82,9 @@ void dae::LevelLoader::LoadLevel(string levelName, dae::Scene* scene)
 
 					cell->isAccessible = true;
 
-					auto coin = new CoinPrefab();
-					coin->Translate(x * tileSize, y * tileSize, 0);
-					scene->AddChild(coin);
+					auto pill = new PillPrefab();
+					pill->Translate(x * tileSize, y * tileSize, 0);
+					scene->AddChild(pill);
 				}
 				Grid.push_back(cell);
 

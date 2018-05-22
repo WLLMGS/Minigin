@@ -69,6 +69,7 @@ void dae::ResourceManager::InitResources()
 	InitTexture("coin.png", COIN);
 	InitTexture("enemy.png", GHOST);
 	InitTexture("mspacman-spritesheet.png", MSPACMAN);
+	InitTexture("pill.png", PILL);
 }
 
 void dae::ResourceManager::InitTexture(const std::string& file, const TextureName name)

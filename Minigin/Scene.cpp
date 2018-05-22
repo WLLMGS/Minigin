@@ -75,7 +75,7 @@ void dae::Scene::RootUpdate(float elapsedSec)
 				{
 					thread seperateThread(&GameObject::RootUpdate, gameObject, elapsedSec);
 
-					seperateThread.detach();
+					if (seperateThread.joinable()) seperateThread.detach();
 				}
 				else gameObject->RootUpdate(elapsedSec);
 			}
@@ -85,6 +85,8 @@ void dae::Scene::RootUpdate(float elapsedSec)
 			Destroy(t);
 		}
 	}
+
+	
 
 	//collision only
 	for (size_t t{0}; t <  m_pGameObjects.size(); ++t)
@@ -157,9 +159,6 @@ void dae::Scene::RootUpdate(float elapsedSec)
 
 			}
 		}
-			
-			
-		
 	}
 
 	
