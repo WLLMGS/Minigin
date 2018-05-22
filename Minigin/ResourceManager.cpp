@@ -66,14 +66,9 @@ void dae::ResourceManager::InitResources()
 
 	InitTexture("pacman-spritesheet.png", PACMAN);
 	InitTexture("wallTile.png", WALL_1);
-	InitTexture("SpaceShip1.png", SPACESHIP_1);
-	InitTexture("Bullet_blue.png", BULLET_BLUE);
-	InitTexture("EnemySpaceShip1.png", SPACESHIPT_ENEMY_1);
-	InitTexture("Large_explosion.png", LARGE_EXPLOSION);
-	InitTexture("thruster.png", THRUSTER);
-	InitTexture("Bullet_orange.png", BULLET_ORANGE);
 	InitTexture("coin.png", COIN);
 	InitTexture("enemy.png", GHOST);
+	InitTexture("mspacman-spritesheet.png", MSPACMAN);
 }
 
 void dae::ResourceManager::InitTexture(const std::string& file, const TextureName name)

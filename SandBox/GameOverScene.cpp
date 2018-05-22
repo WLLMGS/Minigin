@@ -21,7 +21,7 @@ void GameOverScene::Update(float elapsedSec)
 
 	auto& input = dae::InputManager::GetInstance();
 
-	if (input.IsKeyPressed(SDLK_SPACE) || input.IsPressed(dae::ControllerButton::ButtonA))
+	if (input.IsKeyPressed(SDLK_RETURN) || input.IsPressed(dae::ControllerButton::ButtonA))
 	{
 		for (auto button : m_pButtons)
 		{
@@ -33,7 +33,7 @@ void GameOverScene::Update(float elapsedSec)
 		}
 	}
 
-	if (input.IsPressed(dae::ControllerButton::DpadDown) || input.IsKeyPressed(SDLK_s))
+	if (input.IsPressed(dae::ControllerButton::DpadDown) || input.IsKeyPressed(SDLK_s) || input.IsKeyPressed(SDLK_DOWN))
 	{
 		if (m_CoolDown < 0.0f)
 		{
@@ -55,7 +55,7 @@ void GameOverScene::Update(float elapsedSec)
 
 	}
 
-	if (input.IsPressed(dae::ControllerButton::DpadUp) || input.IsKeyPressed(SDLK_z) || input.IsKeyPressed(SDLK_w))
+	if (input.IsPressed(dae::ControllerButton::DpadUp) || input.IsKeyPressed(SDLK_z) || input.IsKeyPressed(SDLK_w) || input.IsKeyPressed(SDLK_UP))
 	{
 		if (m_CoolDown < 0.0f)
 		{

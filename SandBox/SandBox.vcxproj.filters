@@ -33,6 +33,7 @@
     <ClInclude Include="GameOverScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="MsPacmanPrefab.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -59,5 +60,6 @@
     <ClCompile Include="GameOverScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="MsPacmanPrefab.cpp" />
   </ItemGroup>
 </Project>

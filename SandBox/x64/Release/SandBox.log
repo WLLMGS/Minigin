@@ -1,7 +1,7 @@
 ﻿     Creating library D:\GitHub\Minigin\x64\Release\SandBox.lib and object D:\GitHub\Minigin\x64\Release\SandBox.exp
   Generating code
-  1 of 1719 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 1831 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    54 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SandBox.vcxproj -> D:\GitHub\Minigin\x64\Release\SandBox.exe

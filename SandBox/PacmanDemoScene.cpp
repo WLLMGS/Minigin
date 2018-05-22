@@ -11,8 +11,9 @@
 #include "GhostPrefab.h"
 
 
-PacmanDemoScene::PacmanDemoScene() :
-Scene("Pacman Demo Scene")
+PacmanDemoScene::PacmanDemoScene(GameMode mode) :
+Scene("Pacman Demo Scene"),
+m_Mode(mode)
 {	
 	Init();
 }
@@ -58,9 +59,18 @@ void PacmanDemoScene::Init()
 	score->Transform()->SetPosition(GameSettings::WindowSizeX / 2.0f - GameSettings::TileSize * 2.0f, 0);
 	AddChild(score);
 
-	auto ghosts = this->GetObjectsWithTag("Ghost");
+	if(m_Mode == MultiplayerGhost)
+	{
+		auto ghosts = this->GetObjectsWithTag("Ghost");
 
-	GhostPrefab* ghost1 = static_cast<GhostPrefab*>(ghosts[0]);
+		GhostPrefab* ghost1 = static_cast<GhostPrefab*>(ghosts[0]);
 
-	ghost1->SetControlled();
+		ghost1->SetControlled();
+	}
+	else if(m_Mode == MultiplayerMsPacman)
+	{
+		//spawn ms pacman here
+
+	}
+	
 }

@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 #include "ColliderComponent.h"
 #include <algorithm>
+#include <thread>
 
 unsigned int dae::Scene::idCounter = 0;
 
@@ -60,66 +61,44 @@ vector<dae::GameObject*> dae::Scene::GetObjectsWithTag(string tag)
 void dae::Scene::RootUpdate(float elapsedSec)
 {
 	Update(elapsedSec);
-	/*for (auto gameObject : m_pGameObjects)*/
 
-	//auto oldSize = m_pGameObjects.size();
+	//update only -> no collision
+	for(size_t t{}; t < m_pGameObjects.size(); ++t)
+	{
+		auto gameObject = m_pGameObjects[t];
 
+		if (!gameObject->IsDestroyed())
+		{
+			if (gameObject->IsEnabled())
+			{
+				if(gameObject->GetTag() == "Ghost")
+				{
+					thread seperateThread(&GameObject::RootUpdate, gameObject, elapsedSec);
+
+					seperateThread.detach();
+				}
+				else gameObject->RootUpdate(elapsedSec);
+			}
+		}
+		else
+		{
+			Destroy(t);
+		}
+	}
+
+	//collision only
 	for (size_t t{0}; t <  m_pGameObjects.size(); ++t)
 	{
 		auto gameObject = m_pGameObjects[t];
 		auto collider = gameObject->GetComponent<ColliderComponent>();
 
-		if(!gameObject->IsDestroyed())
+		//collision
+		if(collider)
 		{
-			if (gameObject->IsEnabled())
+			if(!collider->IsTrigger())
 			{
-				gameObject->RootUpdate(elapsedSec);
-			}
-
-			//collision
-			if(collider)
-			{
-				if(!collider->IsTrigger())
-				{
-					if (collider->IsDynamic()
-						&& gameObject->IsEnabled())
-					{
-						for (size_t s{ 0 }; s < m_pGameObjects.size(); ++s)
-						{
-							auto other = m_pGameObjects[s];
-							auto otherCollider = other->GetComponent<ColliderComponent>();
-
-							if (otherCollider
-								&& other != gameObject
-								&& other->IsEnabled()
-								&& !other->IsDestroyed()
-								&& collider->GetCollisionIgnoreGroup() != otherCollider->GetCollisionGroup()
-								&& otherCollider->GetCollisionIgnoreGroup() != collider->GetCollisionGroup()
-								&& !otherCollider->IsTrigger()
-								)
-							{
-
-								if (!otherCollider->IsDynamic())
-								{
-									if (collider->CheckCollision(otherCollider))
-									{
-										gameObject->OnCollisionEnter(otherCollider);
-										other->OnCollisionEnter(collider);
-									}
-								}
-								else
-								{
-									if (collider->CheckCollisionWithMass(otherCollider))
-									{
-										gameObject->OnCollisionEnter(otherCollider);
-										other->OnCollisionEnter(collider);
-									}
-								}
-							}
-						}
-					}
-				}
-				else
+				if (collider->IsDynamic()
+					&& gameObject->IsEnabled())
 				{
 					for (size_t s{ 0 }; s < m_pGameObjects.size(); ++s)
 					{
@@ -127,28 +106,59 @@ void dae::Scene::RootUpdate(float elapsedSec)
 						auto otherCollider = other->GetComponent<ColliderComponent>();
 
 						if (otherCollider
-							&& otherCollider != collider
+							&& other != gameObject
+							&& other->IsEnabled()
+							&& !other->IsDestroyed()
+							&& collider->GetCollisionIgnoreGroup() != otherCollider->GetCollisionGroup()
+							&& otherCollider->GetCollisionIgnoreGroup() != collider->GetCollisionGroup()
 							&& !otherCollider->IsTrigger()
-							&& otherCollider->IsDynamic())
+							)
 						{
-							if (collider->CheckTrigger(otherCollider))
+
+							if (!otherCollider->IsDynamic())
 							{
-								gameObject->OnTriggerEnter(otherCollider);
-								other->OnTriggerEnter(collider);
+								if (collider->CheckCollision(otherCollider))
+								{
+									gameObject->OnCollisionEnter(otherCollider);
+									other->OnCollisionEnter(collider);
+								}
+							}
+							else
+							{
+								if (collider->CheckCollisionWithMass(otherCollider))
+								{
+									gameObject->OnCollisionEnter(otherCollider);
+									other->OnCollisionEnter(collider);
+								}
 							}
 						}
 					}
-
 				}
 			}
-			//do collision
+			else
+			{
+				for (size_t s{ 0 }; s < m_pGameObjects.size(); ++s)
+				{
+					auto other = m_pGameObjects[s];
+					auto otherCollider = other->GetComponent<ColliderComponent>();
+
+					if (otherCollider
+						&& otherCollider != collider
+						&& !otherCollider->IsTrigger()
+						&& otherCollider->IsDynamic())
+					{
+						if (collider->CheckTrigger(otherCollider))
+						{
+							gameObject->OnTriggerEnter(otherCollider);
+							other->OnTriggerEnter(collider);
+						}
+					}
+				}
+
+			}
+		}
 			
-		}
-		else
-		{
-			//destroy
-			Destroy(t);
-		}
+			
 		
 	}
 

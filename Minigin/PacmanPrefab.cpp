@@ -73,7 +73,7 @@ void PacmanPrefab::OnCollisionEnter(ColliderComponent* other)
 		}
 		else
 		{
-			if (m_Lives > 0)
+			if (m_Lives >= 0)
 			{
 				m_Lives -= 1;
 				Transform()->SetPosition(GetSpawnPosition().x, GetSpawnPosition().y);
